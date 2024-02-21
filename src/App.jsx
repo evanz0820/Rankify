@@ -14,6 +14,18 @@ function App() {
   return (
     <div className='App'>
       <Navbar />
+
+      {/* This is Irvin's Branch */}
+
+      <div className='search-bar'>
+        <input
+          type='text'
+          placeholder='Search...'
+          // value={searchTerm}
+          // onChange={handleInputChange}
+        />
+        {/* <img src={searchIcon} alt='Search' className='search-icon' /> */}
+      </div>
     </div>
   )
 }
