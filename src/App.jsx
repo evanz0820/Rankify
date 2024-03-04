@@ -1,15 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useState, useEffect } from "react";
 import './App.css'
 import Navbar from './Components/Navbar'
-
-
+import fetchYelpData from "./constants/Api"; // Import the fetchYelpData function
 
 
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    // Call the API when component mounts
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const data = await fetchYelpData(); // Call the fetchYelpData function
+      // Do something with the data, if needed
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
 
   return (
     <div className='App'>
@@ -62,8 +73,6 @@ function App() {
         
         </div>
       </div>
-
-
 
     {/* Ending div for root */}
     </div>
