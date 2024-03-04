@@ -1,27 +1,23 @@
 import React, { useState, useEffect } from "react";
 import './App.css'
 import Navbar from './Components/Navbar'
-import fetchYelpData from "./constants/Api"; // Import the fetchYelpData function
+import fetchData from './constants/Api';
 
 
 
 function App() {
-
   useEffect(() => {
-    // Call the API when component mounts
-    fetchData();
-  }, []);
+    const fetchDataFromApi = async () => {
+      const data = await fetchData();
+      if (data) {
+        console.log(data);
+        // Handle your data here
+      }
+    };
 
-  const fetchData = async () => {
-    try {
-      const data = await fetchYelpData(); // Call the fetchYelpData function
-      // Do something with the data, if needed
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-
+    fetchDataFromApi();
+  }, []); // Empty dependency array to run once on mount
+  
   return (
     <div className='App'>
       <Navbar />
