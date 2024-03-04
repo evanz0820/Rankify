@@ -17,8 +17,8 @@
 
 .input-bar{
     width: 50%;
-    height:5%;
-    border-radius: 5px;
+    height:10%;
+    border-radius: 60px;
 }
 
 .content-login-container{
@@ -35,9 +35,19 @@
 }
 
 .left-content{
-    width:50%
+    width:50%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .right-content{
-    width:50%
+    height: 70%;
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -42,8 +42,22 @@ function App() {
 
             {/* Mock create account bar */}
           <div class="right-content">
-            <p>Create an Account!</p>
+            <h1>Create an Account!</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, eum? Illo, libero cumque consectetur sit nisi sapiente doloribus possimus blanditiis dolorem consequuntur sed odio iste, recusandae perspiciatis repellat nulla ipsa?</p>
+            <input 
+              class="input-bar"
+              type='text'
+              placeholder='Email Address'
+              // value={searchTerm}
+              // onChange={handleInputChange}
+            />
+            <input 
+              class="input-bar"
+              type='text'
+              placeholder='Password'
+              // value={searchTerm}
+              // onChange={handleInputChange}
+            />
           </div>
         
         </div>
