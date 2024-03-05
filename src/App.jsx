@@ -6,18 +6,29 @@ import fetchData from './constants/Api';
 
 
 function App() {
+  const [burgers, setBurgers] = useState([]);
+
   useEffect(() => {
     const fetchDataFromApi = async () => {
-      const data = await fetchData();
-      if (data) {
-        console.log(data);
-        // Handle your data here
+      try {
+        const data = await fetchData();
+        console.log("Fetched data:", data); // Log fetched data
+        if (data && Array.isArray(data)) {
+          setBurgers(data); // Update state with fetched data if it's an array
+        } else {
+          console.error("Data is not an array:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchDataFromApi();
   }, []); // Empty dependency array to run once on mount
+
   
+
+
   return (
     <div className='App'>
       <Navbar />
@@ -68,6 +79,17 @@ function App() {
           </div>
         
         </div>
+      </div>
+
+      {/* Content for burgers */}
+      <div className="burgers-content">
+        {burgers.map(burger => (
+          <div key={burger.id}>
+            <p>{burger.name}</p>
+            <img src={burger.image} alt={burger.name} />
+            <p>{burger.description}</p>
+          </div>
+        ))}
       </div>
 
     {/* Ending div for root */}
