@@ -81,18 +81,28 @@ function App() {
         </div>
       </div>
 
+
       {/* Content for burgers */}
-      <div className="burgers-content">
+      <h1>Burgers</h1>
+      {/* Render fetched data */}
+      <div className="burgers-container">
         {burgers.map(burger => (
-          <div key={burger.id}>
-            <p>{burger.name}</p>
-            <img src={burger.image} alt={burger.name} />
-            <p>{burger.description}</p>
+          <div key={burger.id} className="burger-item">
+            <h2>{burger.name}</h2>
+            <p>{burger.desc}</p>
+            <p>Price: ${burger.price}</p>
+            <p>{burger.veg ? 'Vegetarian' : 'Non-vegetarian'}</p>
+            <h3>Ingredients:</h3>
+            <ul>
+              {burger.ingredients.map((ingredient, index) => (
+                <li key={index}>{ingredient.name}</li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
 
-    {/* Ending div for root */}
+      
     </div>
   )
 }

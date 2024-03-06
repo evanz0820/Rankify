@@ -1,5 +1,5 @@
 .App{
-    height:100vh;
+    /* height:100vh; */
     width:auto;
     background-color: lightgreen;
     display:flex;
@@ -50,4 +50,24 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+
+.burgers-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+.burger-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.burger-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
 }
