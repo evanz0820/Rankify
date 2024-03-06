@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import './App.css'
 import Navbar from './Components/Navbar'
 import fetchData from './constants/Api';
-
-
+import Search from  "./Components/Search"
+import { Link } from 'react-router-dom';
 
 function App() {
   const [burgers, setBurgers] = useState([]);
@@ -45,7 +45,7 @@ function App() {
           // onChange={handleInputChange}
         />
         {/* <img src={searchIcon} alt='Search' className='search-icon' /> */}
-
+        <Link to="/search"><button>Search!</button></Link>
       </div>
 
       {/* Second half  */}
@@ -102,7 +102,7 @@ function App() {
         ))}
       </div>
 
-      
+
     </div>
   )
 }
