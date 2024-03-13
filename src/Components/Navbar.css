@@ -18,8 +18,11 @@
     cursor: pointer; /* Change cursor to pointer on hover for better UX */
 }
 
+.navbar-item R-logo{
+    font-size: large;
+}
 .navbar-item:hover {
-    color:red; 
+    color:lightblue; 
 }
 
 
