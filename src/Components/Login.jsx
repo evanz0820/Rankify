@@ -1,19 +1,9 @@
-import React from "react";
-import Navbar from "./Navbar";
+import React from 'react';
 
-
-
-function Login(){
-
-
-
-    return(
-        <div className = "Login-container">
-            <Navbar/>
-            <h1>Welcome to the Login</h1>
-        </div>
-        
-    )
+function Login() {
+  return (
+    <div>Login</div>
+  )
 }
 
 export default Login;

@@ -8,26 +8,24 @@ import { Link } from 'react-router-dom';
 function App() {
   const [burgers, setBurgers] = useState([]);
 
-  useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const data = await fetchData();
-        console.log("Fetched data:", data); // Log fetched data
-        if (data && Array.isArray(data)) {
-          setBurgers(data); // Update state with fetched data if it's an array
-        } else {
-          console.error("Data is not an array:", data);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  // API Call to show up example of API
+  // useEffect(() => {
+  //   const fetchDataFromApi = async () => {
+  //     try {
+  //       const data = await fetchData();
+  //       console.log("Fetched data:", data); // Log fetched data
+  //       if (data && Array.isArray(data)) {
+  //         setBurgers(data); // Update state with fetched data if it's an array
+  //       } else {
+  //         console.error("Data is not an array:", data);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
 
-    fetchDataFromApi();
-  }, []); // Empty dependency array to run once on mount
-
-  
-
+  //   fetchDataFromApi();
+  // }, []); // Empty dependency array to run once on mount
 
   return (
     <div className='App'>
@@ -83,9 +81,9 @@ function App() {
 
 
       {/* Content for burgers */}
-      <h1>Burgers</h1>
+      {/* <h1>Burgers</h1> */}
       {/* Render fetched data */}
-      <div className="burgers-container">
+      {/* <div className="burgers-container">
         {burgers.map(burger => (
           <div key={burger.id} className="burger-item">
             <h2>{burger.name}</h2>
@@ -100,7 +98,7 @@ function App() {
             </ul>
           </div>
         ))}
-      </div>
+      </div> */}
 
 
     </div>
