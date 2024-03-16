@@ -1,8 +1,8 @@
 import React from 'react'
-
+import "./HomeLogin.css"
 function HomeLogin() {
   return (
-    <div>Welcome! You just Logged in</div>
+    <div className="home-container">Welcome! You just Logged in</div>
   )
 }
 

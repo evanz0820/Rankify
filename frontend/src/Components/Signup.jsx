@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom"
 import "./Signup.css"
 import Validation from "./SignupValidation";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 function Signup() {
     const [values, setValues] = useState({
@@ -30,6 +31,7 @@ function Signup() {
     }
   return (
     <div>
+        <Navbar />
         <div className="signup-container">
             <h1>Sign Up form</h1>
             <form action="" onSubmit={handleSubmit}>
