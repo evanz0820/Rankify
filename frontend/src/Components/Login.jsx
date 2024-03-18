@@ -1,10 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useContext } from 'react'
 import {Link, useNavigate} from "react-router-dom"
 import Signup from "./Signup"
 import Validation from "./LoginValidation"
 import "./Login.css"
 import axios from "axios";
-
 
 
 function Login() {
@@ -15,6 +14,7 @@ function Login() {
     const navigate = useNavigate();
     const [errors,setErrors] = useState({})
 
+    
 
     const handleInput = (event) => {
         setValues(prev => ({...prev, [event.target.name]:event.target.value}))
