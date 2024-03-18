@@ -6,6 +6,10 @@
     flex-direction: column;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+} 
 
 .search-bar{
     display: flex;

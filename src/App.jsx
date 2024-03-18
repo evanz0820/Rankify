@@ -32,7 +32,7 @@ function App() {
   return (
     <div className='App'>
       <Navbar />
-
+      
       {/* This is Irvin's Branch */}
 
       {/* Search Bar */}
