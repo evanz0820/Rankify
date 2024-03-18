@@ -7,26 +7,6 @@ import Login from "./Components/Login";
 import { Link } from 'react-router-dom';
 
 function App() {
-  // const [burgers, setBurgers] = useState([]);
-
-  // API Call to show up example of API
-  // useEffect(() => {
-  //   const fetchDataFromApi = async () => {
-  //     try {
-  //       const data = await fetchData();
-  //       console.log("Fetched data:", data); // Log fetched data
-  //       if (data && Array.isArray(data)) {
-  //         setBurgers(data); // Update state with fetched data if it's an array
-  //       } else {
-  //         console.error("Data is not an array:", data);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-
-  //   fetchDataFromApi();
-  // }, []); // Empty dependency array to run once on mount
 
   return (
     <div className='App'>
