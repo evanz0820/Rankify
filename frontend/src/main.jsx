@@ -7,7 +7,7 @@ import Login from "./Components/Login.jsx"
 import Search from  "./Components/Search.jsx"
 import Signup from "./Components/Signup.jsx"
 import HomeLogin from "./Components/HomeLogin.jsx"
-
+import About from "./Components/About.jsx"
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   
@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/signup" element={<Signup/>}></Route>
             <Route path="/homelogin" element={<HomeLogin/>}></Route>
             <Route path="/login" element={<Login />} /> {/* Add a Route for Login */}
-
+            <Route path="/about" element={<About />}></Route>
           </Routes>
     </BrowserRouter>
   

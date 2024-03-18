@@ -2,7 +2,6 @@ import React, {useState, useContext } from 'react'
 import {Link, useNavigate} from "react-router-dom"
 import Signup from "./Signup"
 import Validation from "./LoginValidation"
-import "./Login.css"
 import axios from "axios";
 
 
@@ -38,7 +37,7 @@ function Login() {
 
   return (
     <div>
-        <div className="login-container">
+        <div className="login-container bg-blue-300">
             <h1>Log In form</h1>
             <form action="" onSubmit={handleSubmit}>
                 <div>
