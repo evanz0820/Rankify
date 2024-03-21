@@ -14,7 +14,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/search" element={<Search />} /> 
+            {/* <Route path="/search" element={<Search />} />  */}
+            <Route path="/search/:placeID" element={<Search />} /> {/* Pass placeID as URL parameter */}
             <Route path="/signup" element={<Signup/>}></Route>
             <Route path="/homelogin" element={<HomeLogin/>}></Route>
             <Route path="/login" element={<Login />} /> {/* Add a Route for Login */}
