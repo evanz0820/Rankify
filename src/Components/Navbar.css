@@ -12,17 +12,15 @@
     display:flex;
 }
 .navbar-item {
-    margin: 0; /* Remove default margin for the heading */
-    font-size: 18px; /* Adjust the font size of the heading */
+    font-size: 16px; /* Adjust the font size of the heading */
     padding: 10px 20px; /* Add padding around each navbar item */
     cursor: pointer; /* Change cursor to pointer on hover for better UX */
 }
 
 .navbar-item R-logo{
-    font-size: large;
 }
 .navbar-item:hover {
-    color:lightblue; 
+
 }
 
 

@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Components/Login.jsx"
 import Search from  "./Components/Search.jsx"
 import BusinessProfile from './Components/BusinessProfile.jsx';
+import AboutUs from './Components/AboutUs.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<Login />} /> {/* Route to the Login component */}
         <Route path="/search" element={<Search />} /> 
         <Route path="/business" element={<BusinessProfile />} /> 
+        <Route path="/about" element={<AboutUs />} /> 
         
 
       </Routes>
