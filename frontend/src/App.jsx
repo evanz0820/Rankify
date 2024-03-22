@@ -33,7 +33,10 @@ function App() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam labore, quos accusamus ea, dolorem provident, quia ducimus delectus beatae aliquam hic. Quis expedita culpa voluptates facilis amet dolorum possimus labore!
             </p>
           </div>
-          <Login className="w-1/2 flex"/>
+          <div className="w-1/2 flex">
+            <Login />
+          </div>
+          
         </div>
         
       </div>

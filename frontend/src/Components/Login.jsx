@@ -36,10 +36,10 @@ function Login() {
 
 
   return (
-    <div>
-        <div className="login-container bg-blue-300">
+    <div className="bg-blue-300 flex-col w-full">
+        <div className="login-container flex-col ">
             <h1>Log In form</h1>
-            <form action="" onSubmit={handleSubmit}>
+            <form className="flex-col" action="" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email"><strong>Email</strong></label>
                     <input type="email" placeholder="Enter Email" name="email" 
