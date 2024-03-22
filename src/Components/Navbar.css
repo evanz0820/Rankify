@@ -1,15 +1,15 @@
 .Navbar {
-    color: black; /* Text color of the navbar */
-    padding: 10px; /* Padding around the content inside the navbar */
-    display: flex; /* Use flexbox layout */
-    justify-content: space-between; /* Space items evenly along the main axis */
-    align-items: center; /* Vertically center items */
-    background-color: red;
+    /* color: black; Text color of the navbar */
+    /* padding: 10px; Padding around the content inside the navbar */
+    /* display: flex; Use flexbox layout */
+    /* justify-content: space-between; Space items evenly along the main axis */
+    /* align-items: center; Vertically center items */
+    /* background-color: red; */
 }
 
 
 .nav-container{
-    display:flex;
+    /* display:flex; */
 }
 .navbar-item {
     font-size: 16px; /* Adjust the font size of the heading */
