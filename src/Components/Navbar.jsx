@@ -2,9 +2,13 @@ import react from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 
-function Navbar({isTransparent = false}) {
+function Navbar({ isTransparent = false }) {
   return (
-    <nav className={`flex items-center justify-between md:justify-center h-20 relative md:space-x-36 ${isTransparent ? "bg-transparent" : "bg-white"}`}>
+    <nav
+      className={`flex items-center justify-between md:justify-center h-20 relative md:space-x-36 ${
+        isTransparent ? "bg-transparent" : "bg-white"
+      }`}
+    >
       {/* Logo */}
       <Link to="/">
         <div className="flex items-center flex-shrink-0 text-emerald-500">
@@ -29,7 +33,7 @@ function Navbar({isTransparent = false}) {
       <div className="flex min-w-[230px] w-1/3 p-2 bg-white rounded-full shadow-md border-2 place-self-center">
         <div className="flex grow items-center rounded-full">
           <input
-            className="w-full px-4 py-2 focus:outline-none"
+            className="w-full px-4 py-2 focus:outline-none text-black"
             type="text"
             placeholder="Search..."
             // value={searchTerm}
@@ -59,11 +63,17 @@ function Navbar({isTransparent = false}) {
 
       <div className="flex items-center justify-center space-x-2 font-semibold mr-3">
         {/* We can change this to another page, like Review or Browse if wanted */}
-        <Link to="/AboutUs" className="hover:bg-gray-100 rounded-full px-3 py-2 text-sm hidden sm:inline truncate">
-          About Us
+        <Link
+          to="/AboutUs"
+          className="rounded-full px-3 py-2 text-sm hidden sm:inline truncate"
+        >
+          Write a Review
         </Link>
         {/* TODO: Login will turn into profile icon when logged in, will route to their profile page */}
-        <Link to="/login" className="bg-black hover:bg-neutral-700 transition-colors rounded-full px-5 py-2 text-lg text-white tracking-wide">
+        <Link
+          to="/login"
+          className="bg-black hover:bg-neutral-700 transition-colors rounded-full px-5 py-2 text-lg text-white tracking-wide"
+        >
           Login
         </Link>
       </div>

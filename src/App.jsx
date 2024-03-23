@@ -28,55 +28,40 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
-
-      {/* This is Irvin's Branch */}
-
-      {/* Search Bar */}
-      <div className="search-bar">
-        <input
-          class="input-bar"
-          type="text"
-          placeholder="Search..."
-          // value={searchTerm}
-          // onChange={handleInputChange}
-        />
-        {/* <img src={searchIcon} alt='Search' className='search-icon' /> */}
-        <Link to="/search">
-          <button>Search!</button>
-        </Link>
-      </div>
-
-      {/* Second half  */}
-      <div class="content-login-container">
-        <div class="inside-content-login">
-          <div class="left-content">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-              labore, quos accusamus ea, dolorem provident, quia ducimus
-              delectus beatae aliquam hic. Quis expedita culpa voluptates
-              facilis amet dolorum possimus labore!
+      {/* Navbar+Hero hydrid section */}
+      <section className="flex flex-col text-white bg-[url('src/assets/homepage-hero-image.jpg')] bg-center bg-cover bg-blend-overlay bg-fixed bg-black/45 py-5">
+        <Navbar isTransparent={true} />
+        {/* Hero Content  */}
+        <div className="h-[700px] flex flex-wrap items-center justify-center mx-auto sm:px-12">
+          <div className="mb-14 lg:mb-0 lg:w-1/2">
+            <h1 className="max-w-xl text-[2.9rem] leading-none font-extrabold text-center lg:text-[4rem] lg:text-left lg:leading-tight mb-5">
+              Your Voice, Your Reviews.
+            </h1>
+            <p className="max-w-xl mx-2 sm:mx-0 text-center text-gray-200 lg:text-left lg:max-w-md">
+              Unlock the power of informed decision-making with Rankify. We're
+              here to guide you through the maze of choices by providing
+              authentic, unbiased reviews on a wide range of products and
+              services.
             </p>
           </div>
 
           {/* Mock create account bar */}
-          <div class="right-content">
-            <h1>Create an Account!</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
-              eum? Illo, libero cumque consectetur sit nisi sapiente doloribus
-              possimus blanditiis dolorem consequuntur sed odio iste, recusandae
-              perspiciatis repellat nulla ipsa?
+          <div className="lg:w-1/2">
+            <h1 className="max-w-xl text-4xl leading-none font-extrabold text-center lg:text-left lg:leading-tight mb-5">
+              Create an Account!
+            </h1>
+            <p className="max-w-xl text-center text-l text-gray-200 lg:text-left lg:max-w-md">
+              Create an account to unlock the best of Rankify.
             </p>
             <input
-              class="input-bar"
+              className="block rounded-full w-full px-4 py-2 focus:outline-none text-black mt-3"
               type="text"
               placeholder="Email Address"
               // value={searchTerm}
               // onChange={handleInputChange}
             />
             <input
-              class="input-bar"
+              className="block rounded-full w-full px-4 py-2 focus:outline-none text-black mt-3"
               type="text"
               placeholder="Password"
               // value={searchTerm}
@@ -84,7 +69,7 @@ function App() {
             />
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Content for burgers */}
       <h1>Burgers</h1>

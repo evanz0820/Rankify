@@ -1,7 +1,6 @@
 .App{
     /* height:100vh; */
     width:auto;
-    background-color: lightgreen;
     display:flex;
     flex-direction: column;
 }
@@ -11,7 +10,7 @@ html, body {
   padding: 0;
 } 
 
-.search-bar{
+/* .search-bar{
     display: flex;
     justify-content:center;
     align-items:center;
@@ -54,7 +53,7 @@ html, body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 
 .burgers-container {
