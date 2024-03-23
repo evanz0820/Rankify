@@ -1,4 +1,4 @@
-import React, {useState, useContext } from 'react'
+import React, {useEffect,useState, useContext } from 'react'
 import {Link, useNavigate} from "react-router-dom"
 import Signup from "./Signup"
 import Validation from "./LoginValidation"
@@ -13,18 +13,35 @@ function Login() {
     const navigate = useNavigate();
     const [errors,setErrors] = useState({})
 
-    
 
     const handleInput = (event) => {
         setValues(prev => ({...prev, [event.target.name]:event.target.value}))
     }
+
+    axios.defaults.withCredentials = true;
+
+    // So this basically makes it so that when a user is logged in, and they try to go to the login, they will be taken back to homelogin instead
+    useEffect(()=> {
+        axios.get('http://localhost:8081/homelogin')
+        .then(res => {
+          if(res.data.valid){
+            navigate('/homelogin')
+          } else{
+            navigate('/')
+          }
+        })
+        .catch(err => console.log(err))
+      },[])
+
     const handleSubmit = (event) => {
         event.preventDefault();
         setErrors(Validation(values));
         if(errors.email === "" && errors.password === ""){
             axios.post("http://localhost:8081/login", values)
             .then(res => {
-                if(res.data == "Success"){
+                // if(res.data == "Success"){
+                if(res.data.Login){
+                    // console.log(res)
                     navigate("/homelogin");
                 } else{
                     alert("No record Exists")
