@@ -29,44 +29,48 @@ function App() {
   return (
     <div className="App">
       {/* Navbar+Hero hydrid section */}
-      <section className="flex flex-col text-white bg-[url('src/assets/homepage-hero-image.jpg')] bg-center bg-cover bg-blend-overlay bg-fixed bg-black/45 py-5">
+      <section className="relative container-full flex flex-col text-white bg-[url('src/assets/homepage-hero-image.jpg')] bg-center bg-cover bg-blend-overlay bg-fixed bg-black/45 py-5">
         <Navbar isTransparent={true} />
         {/* Hero Content  */}
-        <div className="h-[700px] flex flex-wrap items-center justify-center mx-auto sm:px-12">
-          <div className="mb-14 lg:mb-0 lg:w-1/2">
-            <h1 className="max-w-xl text-[2.9rem] leading-none font-extrabold text-center lg:text-[4rem] lg:text-left lg:leading-tight mb-5">
-              Your Voice, Your Reviews.
+        <div className="h-[700px] flex flex-wrap md:flex-nowrap items-center justify-center mx-auto">
+          <div className="flex flex-col text-center md:text-left md:w-1/2 md:mx-12">
+            <h1 className="max-w-xl text-[2.9rem] leading-none font-extrabold lg:text-[4rem] md:leading-tight mb-5">
+              Your <span className="text-orange-100">Voice,</span> Your <span className="text-emerald-500">Reviews.</span>
             </h1>
-            <p className="max-w-xl mx-2 sm:mx-0 text-center text-gray-200 lg:text-left lg:max-w-md">
+            <p className="max-w-xl mx-2 sm:mx-0 text-gray-200  lg:max-w-md">
               Unlock the power of informed decision-making with Rankify. We're
               here to guide you through the maze of choices by providing
               authentic, unbiased reviews on a wide range of products and
               services.
             </p>
+            <button className="self-center md:self-start max-w-48 mt-5 bg-blend-overlay bg-fixed bg-black/60 hover:bg-black transition-colors rounded-xl px-8 py-2 text-lg text-white tracking-wide">Learn More</button>
           </div>
 
           {/* Mock create account bar */}
-          <div className="lg:w-1/2">
-            <h1 className="max-w-xl text-4xl leading-none font-extrabold text-center lg:text-left lg:leading-tight mb-5">
+          <div className="md:w-1/2 md:mx-12">
+            <h1 className="max-w-xl text-4xl leading-none font-extrabold text-center md:text-left md:leading-tight mb-5">
               Create an Account!
             </h1>
-            <p className="max-w-xl text-center text-l text-gray-200 lg:text-left lg:max-w-md">
+            <p className="max-w-xl text-center text-l text-gray-200 md:text-left md:max-w-md">
               Create an account to unlock the best of Rankify.
             </p>
-            <input
-              className="block rounded-full w-full px-4 py-2 focus:outline-none text-black mt-3"
-              type="text"
-              placeholder="Email Address"
-              // value={searchTerm}
-              // onChange={handleInputChange}
-            />
-            <input
-              className="block rounded-full w-full px-4 py-2 focus:outline-none text-black mt-3"
-              type="text"
-              placeholder="Password"
-              // value={searchTerm}
-              // onChange={handleInputChange}
-            />
+            <form action="" className="flex flex-col items-left max-w-96">
+              <input
+                className="block rounded-full w-full px-4 py-2 focus:outline-none text-black mt-3"
+                type="text"
+                placeholder="Email Address"
+                // value={searchTerm}
+                // onChange={handleInputChange}
+              />
+              <input
+                className="block rounded-full w-full px-4 py-2 focus:outline-none text-black mt-3"
+                type="text"
+                placeholder="Password"
+                // value={searchTerm}
+                // onChange={handleInputChange}
+              />
+              <button className="self-center mt-3 bg-black hover:bg-neutral-700 transition-colors rounded-full px-24 py-2 text-lg text-white tracking-wide">Join</button>
+            </form>
           </div>
         </div>
       </section>
