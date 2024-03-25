@@ -5,20 +5,20 @@ import { Link } from "react-router-dom";
 function Navbar({ isTransparent = false }) {
   return (
     <nav
-      className={`flex items-center justify-between md:justify-center h-20 relative md:space-x-36 ${
+      className={`flex container-full items-center justify-around h-20 relative ${
         isTransparent ? "bg-transparent" : "bg-white"
       }`}
     >
       {/* Logo */}
       <Link to="/">
-        <div className="flex items-center flex-shrink-0 text-emerald-500">
+        <div className="flex items-center text-emerald-500 mr-28 sm:mr-96">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-5 h-5 ml-3 mr-1"
+            className="w-5 h-5 mr-1"
           >
             <path
               strokeLinecap="round"
@@ -30,7 +30,7 @@ function Navbar({ isTransparent = false }) {
         </div>
       </Link>
 
-      <div className="flex min-w-[260px] w-1/3 p-2 bg-white rounded-full shadow-md border-2 place-self-center">
+      <div className="flex min-w-[150px] w-1/3 p-2 bg-white rounded-full shadow-md border-2 absolute">
         <div className="flex grow items-center rounded-full">
           <input
             className="w-full px-4 py-2 focus:outline-none text-black"
@@ -61,11 +61,11 @@ function Navbar({ isTransparent = false }) {
         </div>
       </div>
 
-      <div className="flex items-center justify-center space-x-2 font-semibold mr-3">
+      <div className="flex items-center justify-center space-x-2 font-semibold mr-1">
         {/* placeholder nav items; change later */}
         <Link
           to="/AboutUs"
-          className="rounded-full px-3 py-2 text-sm hidden sm:inline truncate"
+          className="rounded-full px-3 py-2 text-sm hidden md:inline truncate"
         >
           Write a Review
         </Link>

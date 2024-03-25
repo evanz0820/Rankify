@@ -1,4 +1,4 @@
-.BusinessProfile {
+.Profile {
     display: flex;
     flex-direction: column;
 }
@@ -34,7 +34,11 @@
 }
 
 .profile-hero-content {
-    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
     z-index: 1;
 }
 
@@ -47,6 +51,7 @@
 }
                       
 .profile-hero-content p {
+    max-width: 500px;
     font-weight: light;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     color: whitesmoke;
@@ -56,7 +61,8 @@
 /* ProfileAvatar styles */
 
 .profile-avatar {
-    height: 270px; 
+    height: 270px;
+    width: auto;
     border: 2px solid rgba(0, 0, 0, 0.1);    
     overflow: hidden;
     border-radius: 50%;
@@ -68,14 +74,14 @@
 
 .profile-content {
     display: flex;
-    height: 700px;
+    height: auto;
     background-color: whitesmoke;
 }
 
 /* ReviewList styles */
 .review-list-container {
     padding-top: 20px;
-    width: 1500px;
+    width: auto;
     height: auto;
     background-color: white;
     justify-content: center;
