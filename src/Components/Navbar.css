@@ -4,7 +4,7 @@
     display: flex; /* Use flexbox layout */
     justify-content: space-between; /* Space items evenly along the main axis */
     align-items: center; /* Vertically center items */
-    background-color: red;
+    /* background-color: #E9D8B7; */
 }
 
 

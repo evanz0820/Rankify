@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
-
+import "./Login.css"
 
 
 function Login(){
@@ -8,9 +8,9 @@ function Login(){
 
 
     return(
-        <div className = "Login-container">
+        <div className = "top-part">
             <Navbar/>
-            <h1>Welcome to the Login</h1>
+            <h1>Welcome to the Login page</h1>
         </div>
         
     )
