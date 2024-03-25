@@ -1,4 +1,18 @@
 const express = require("express");
+
+
+// Use async function to dynamically import node-fetch
+(async () => {
+    try {
+        const fetch = await import("node-fetch");
+        // Rest of your server setup code using fetch...
+    } catch (error) {
+        console.error("Error importing node-fetch:", error);
+    }
+})();
+
+
+
 const mysql = require("mysql");
 const cors = require("cors");
 const session = require("express-session");
@@ -93,6 +107,30 @@ app.post("/login", (req, res) => {
 }
 )
 
+
+
+// Maps stuff
+
+app.get('/place-details/:placeID', async (req, res) => {
+    const { placeID } = req.params;
+    try {
+        const response = await fetch(
+            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=`
+        );
+        if (response.ok) {
+            const data = await response.json();
+            res.json(data.result);
+        } else {
+            console.error("Failed to fetch place details");
+            res.status(500).json({ error: "Failed to fetch place details" });
+        }
+    } catch (error) {
+        console.error("Error fetching place details:", error);
+        res.status(500).json({ error: "Error fetching place details" });
+    }
+});
+
+// End of google stuff
 
 app.listen(8081, ()=> {
     console.log("listening");
