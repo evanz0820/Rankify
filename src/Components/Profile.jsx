@@ -1,8 +1,9 @@
 import React from "react";
-import "./BusinessProfile.css";
+import "./Profile.css";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
-export default function BusinessProfile() {
+export default function Profile() {
   // NOTE: Need to make banner/avatar editable using useState
   // Integrate editable functionality using input elements
   // - Separate into reusable components
@@ -34,7 +35,7 @@ export default function BusinessProfile() {
   ];
 
   return (
-    <div className="BusinessProfile">
+    <div className="Profile">
       <Navbar />
 
       {/* ProfileHero Component Mockup (later in separate component)*/}
@@ -81,6 +82,7 @@ export default function BusinessProfile() {
 
         </div>
       </div>
+    <Footer />
     </div>
   );
 }

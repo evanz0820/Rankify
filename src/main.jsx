@@ -5,7 +5,7 @@ import './index.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Components/Login.jsx"
 import Search from  "./Components/Search.jsx"
-import BusinessProfile from './Components/BusinessProfile.jsx';
+import Profile from './Components/Profile.jsx';
 import AboutUs from './Components/AboutUs.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} /> {/* Route to the Login component */}
         <Route path="/search" element={<Search />} /> 
-        <Route path="/business" element={<BusinessProfile />} /> 
+        <Route path="/profile" element={<Profile />} /> 
         <Route path="/about" element={<AboutUs />} /> 
         
 
