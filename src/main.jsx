@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} /> {/* Route to the Login component */}
-        <Route path="/search" element={<Search />} /> 
+        <Route path="/search/:placeID" element={<Search />} /> {/* Pass placeID as URL parameter */}
         
 
       </Routes>

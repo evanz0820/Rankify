@@ -9,7 +9,6 @@ function Login(){
 
     return(
         <div className = "Login-container">
-            <Navbar/>
             <h1>Welcome to the Login</h1>
         </div>
         
