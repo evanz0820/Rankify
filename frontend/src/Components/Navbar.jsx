@@ -31,7 +31,11 @@ function Navbar({ onPlaceIDChange }) { // Pass onPlaceIDChange as prop
       <h1 className="text-black text-2xl">Rankify</h1>
       <div className='flex w-3/5 '>
         <Searchbar onPlaceIDChange={handlePlaceIDChange} />
-        <Link className=" border-2 border-black rounded w-1/5" to={`/search/${placeID}`}><button>Search!</button></Link> 
+
+        {/* Centering the button */}
+        <Link className="border-2 border-black rounded w-1/5 flex justify-center items-center" to={`/search/${placeID}`}>
+          <button className="">Search!</button>
+        </Link> 
       </div>
       <div className="flex justify-center"> {/* Center align the content */}
         <Link to="/" className="text-black mr-4">Home</Link>
