@@ -35,10 +35,13 @@ function HomeLogin() {
   return (
     <div >
       <Navbar/>
-      <div className="home-container">
-        <h1>Welcome {name}! You just Logged in!</h1>
-        <button onClick={handleLogout}>Logout</button>
+      <div className="home-container h-screen flex justify-center items-center">
+        <div className="flex flex-col items-center">
+          <h1 className="text-center">Welcome <strong>{name}!</strong> You just Logged in!</h1>
+          <button onClick={handleLogout} className="mt-4">Logout</button>
+        </div>
       </div>
+
       
     </div>
   )

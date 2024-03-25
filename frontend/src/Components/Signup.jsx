@@ -30,7 +30,7 @@ function Signup() {
         }
     }
   return (
-    <div>
+    <div className="w-full">
         <Navbar />
         <div className="signup-container">
             <h1>Sign Up form</h1>
@@ -66,10 +66,10 @@ function Signup() {
                     {errors.password && <span className="error-message">{errors.password}</span>}
                 </div>
 
-                <button type="submit"><strong>Sign up Button</strong></button>
+                <button className=" border-2 border-black rounded" type="submit"><strong>Sign up Button</strong></button>
                 {/* If not registered */}
                 <p>You agree to our terms and policies</p>
-                <Link to="/">Login</Link>
+                <Link className=" border-2 border-black rounded" to="/">Login</Link>
             </form>
         </div>
     </div>

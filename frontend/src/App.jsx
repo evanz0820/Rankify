@@ -23,7 +23,7 @@ function App() {
 
       <div className='search-bar bg-green-300 flex justify-center my-2 py-2'>
         <Searchbar onPlaceIDChange={handlePlaceIDChange} />
-        <Link to={`/search/${placeID}`}><button>Search!</button></Link> 
+        <Link className=" border-2 border-black rounded" to={`/search/${placeID}`}><button>Search!</button></Link> 
       </div>
 
       <div className="content-login-container bg-yellow-300">
@@ -33,7 +33,7 @@ function App() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam labore, quos accusamus ea, dolorem provident, quia ducimus delectus beatae aliquam hic. Quis expedita culpa voluptates facilis amet dolorum possimus labore!
             </p>
           </div>
-          <div className="w-1/2 flex">
+          <div className="w-1/2 ">
             <Login />
           </div>
           
