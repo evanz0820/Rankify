@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar"
 import "./Search.css"
+import Footer from "./Footer";
 
 
 function Search(){
@@ -9,7 +10,10 @@ function Search(){
             <Navbar/>
             <h1>Welcome to the Search page</h1>
 
-            <h1>Results for: </h1>
+            <h1>Results for: 
+            this is now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfjs now the about page dlafjlajafljalkjfakjflkajdlkalkadjfajdflkadjlkfajlkjalsdfj
+            </h1>
+            <Footer></Footer>
         </div>
 
 
