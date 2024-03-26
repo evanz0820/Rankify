@@ -5,7 +5,15 @@
     left:0;
     bottom:0;
     right:0;
-    background-color: black;
+    background-color: #136f52;
     color:white;
     /* height: 30px; */
+}
+
+.text-white {
+    white-space: pre;
+}
+
+body {
+    color: white;
 }
