@@ -21,24 +21,24 @@ function HomeLogin() {
     .catch(err => console.log(err))
   },[])
   // function to handle logout event
-  const handleLogout = () => {
-    axios.post('http://localhost:8081/logout')
-        .then(res => {
-            if (res.data.success) {
-                navigate('/');
-            } else {
-                console.log("Logout failed");
-            }
-        })
-        .catch(err => console.log(err));
-  };
+  // const handleLogout = () => {
+  //   axios.post('http://localhost:8081/logout')
+  //       .then(res => {
+  //           if (res.data.success) {
+  //               navigate('/');
+  //           } else {
+  //               console.log("Logout failed");
+  //           }
+  //       })
+  //       .catch(err => console.log(err));
+  // };
   return (
     <div >
       <Navbar/>
       <div className="home-container h-screen flex justify-center items-center">
         <div className="flex flex-col items-center">
           <h1 className="text-center">Welcome <strong>{name}!</strong> You just Logged in!</h1>
-          <button onClick={handleLogout} className="mt-4">Logout</button>
+          {/* <button onClick={handleLogout} className="mt-4">Logout</button> */}
         </div>
       </div>
 

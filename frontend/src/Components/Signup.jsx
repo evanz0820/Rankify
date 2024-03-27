@@ -24,44 +24,44 @@ function Signup() {
             axios.post("http://localhost:8081/signup", values)
             .then(res => {
                 // console.log(res)
-                navigate("/")
+                navigate("/login")
             })
             .catch(err => console.log(err));
         }
     }
   return (
-    <div className="w-full">
+    <div className="bg-green-300">
         <Navbar />
-        <div className="signup-container">
-            <h1>Sign Up form</h1>
-            <form action="" onSubmit={handleSubmit}>
-
-                <div>
+        <div className="signup-container flex items-center justify-center h-full ">
+            
+            <form className="flex flex-col" action="" onSubmit={handleSubmit}>
+                <h1 className ="text-center" >Sign Up form</h1>
+                <div className="mb-4">
                     <label htmlFor="name"><strong>Name</strong></label>
                     <input type="name" placeholder="Enter Name"
                     name="name"
                     onChange={handleInput}
-                    className="error-message"
+                    className="error-message border border-gray-300 rounded px-3 py-2 w-full"
                      />
                      {errors.name && <span className="error-message">{errors.name}</span>}
                 </div>
 
-                <div>
+                <div className="mb-4">
                     <label htmlFor="email"><strong>Email</strong></label>
                     <input type="email" placeholder="Enter Email" 
                     name="email"
                     onChange={handleInput}
-                    className="error-message"
+                    className="error-message border border-gray-300 rounded px-3 py-2 w-full"
                     />
                     {errors.email && <span className="error-message">{errors.email}</span>}
                 </div>
 
-                <div>
+                <div className="mb-4">
                     <label htmlFor="email"><strong>Password</strong></label>
                     <input type="password" placeholder="Enter Password"
                      name="password"
                      onChange={handleInput}
-                     className="error-message"
+                     className="error-message border border-gray-300 rounded px-3 py-2 w-full"
                     />
                     {errors.password && <span className="error-message">{errors.password}</span>}
                 </div>

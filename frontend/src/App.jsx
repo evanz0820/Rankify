@@ -29,13 +29,10 @@ function App() {
 
       <div className="content-login-container bg-yellow-300">
         <div className="inside-content-login flex">
-          <div className="left-content w-1/2">
+          <div className="left-content w-full">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam labore, quos accusamus ea, dolorem provident, quia ducimus delectus beatae aliquam hic. Quis expedita culpa voluptates facilis amet dolorum possimus labore!
             </p>
-          </div>
-          <div className="w-1/2 ">
-            <Login />
           </div>
           
         </div>
