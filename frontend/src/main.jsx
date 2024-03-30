@@ -8,6 +8,7 @@ import Search from  "./Components/Search.jsx"
 import Signup from "./Components/Signup.jsx"
 import HomeLogin from "./Components/HomeLogin.jsx"
 import About from "./Components/About.jsx"
+import Create from "./pages/Create.jsx"
 
 
 
@@ -23,6 +24,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/homelogin" element={<HomeLogin/>}></Route>
             <Route path="/login" element={<Login />} />
             <Route path="/about" element={<About />}></Route>
+            {/* First CRUD */}
+            <Route path="/create" element={<Create />}></Route>
           </Routes>
     </BrowserRouter>
   

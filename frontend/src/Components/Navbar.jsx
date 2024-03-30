@@ -55,11 +55,12 @@ function Navbar({ onPlaceIDChange }) { // Pass onPlaceIDChange as prop
         {isLoggedIn ? (
           <>
             {/* <Link to="/write-review" className="">Write a Review</Link> */}
+            <Link to="/create" className="">Write a Review</Link>
             <button onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <>
-            {/* <Link to="/signup" className="">Signup</Link> */}
+            
             <Link to="/login" className="">Login</Link>
           </>
         )}
