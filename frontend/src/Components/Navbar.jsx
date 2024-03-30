@@ -59,16 +59,11 @@ function Navbar({ onPlaceIDChange }) { // Pass onPlaceIDChange as prop
           </>
         ) : (
           <>
-            <Link to="/signup" className="">Signup</Link>
+            {/* <Link to="/signup" className="">Signup</Link> */}
             <Link to="/login" className="">Login</Link>
           </>
         )}
       </div>
-      
-      {/* <div className="flex justify-center"> 
-        <Link to="/" className="text-black mr-4">Home</Link>
-        <Link to="/about" className="text-black mr-4">About</Link>
-      </div> */}
     </div>
   );
 }
