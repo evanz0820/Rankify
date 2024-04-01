@@ -5,13 +5,14 @@
 
 /* ProfileHero styles */
 .profile-hero {
-    height: 600px;
+    height: 700px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     overflow: hidden;
     position: relative;
+    margin-top: 60px;
 }
 
 .profile-hero-overlay {
@@ -20,7 +21,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .profile-hero-img {
@@ -47,7 +48,8 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     color: white;
     font-size: 3rem;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    margin-top: 20px;
 }
                       
 .profile-hero-content p {
@@ -70,42 +72,6 @@
     z-index: 1;
 }
 
-/* ProfileContent styles */
-
-.profile-content {
-    display: flex;
-    height: auto;
-    background-color: whitesmoke;
-}
-
-/* ReviewList styles */
-.review-list-container {
-    padding-top: 20px;
-    width: auto;
-    height: auto;
-    background-color: white;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-}
-
-.review-card-container {
-    margin: 50px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 20px;
-}
-
-
-.review-card-item {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    padding: 30px;
-    background-color: #fff;
-    text-align: left;
-}
 
 
 

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Navbar({ isTransparent = false }) {
   return (
     <nav
-      className={`flex container-full items-center justify-around h-20 relative ${
+      className={`flex container-full items-center fixed justify-around top-0 h-20 w-full z-10 ${
         isTransparent ? "bg-transparent" : "bg-white"
       }`}
     >
@@ -41,7 +41,7 @@ function Navbar({ isTransparent = false }) {
           />
           {/* <img src={searchIcon} alt='Search' className='search-icon' /> */}
           <Link to="/search">
-            <button className="flex-shrink-0 px-2 py-2 bg-emerald-500 text-white font-semibold rounded-full hover:bg-emerald-400 transition-colors focus:outline-none">
+            <button className="flex-shrink-0 px-2 py-2 bg-emerald-500 text-white font-semibold rounded-full hover:bg-emerald-400 transition-colors duration-300 ease-in focus:outline-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -72,7 +72,7 @@ function Navbar({ isTransparent = false }) {
         {/* TODO: Login will turn into profile icon when logged in, will route to their profile page */}
         <Link
           to="/login"
-          className="bg-black hover:bg-neutral-700 transition-colors rounded-full px-5 py-2 text-lg text-white tracking-wide"
+          className="bg-black hover:bg-neutral-800 transition-colors duration-100 ease-in rounded-full px-5 py-2 text-lg text-white tracking-wide"
         >
           Login
         </Link>
