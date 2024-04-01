@@ -4,9 +4,10 @@ export default {
     "./index.html",
     "./src/App.jsx",
     "./src/Components/Navbar.jsx",
-    "./src/Components/BusinessProfile.jsx",
+    "./src/Components/Profile.jsx",
     "./src/Components/Search.jsx",
     "./src/Components/Login.jsx",
+    "./src/Components/Footer.jsx",
   ],
   theme: {
     extend: {},
