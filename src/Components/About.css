@@ -5,11 +5,29 @@
     background-repeat: no-repeat;
     background-size: cover;
     /* height: 540px; */
-    filter: brightness(60%);
+    filter: brightness(90%);
 
 }
+
+.background-image {
+    filter: brightness(40%);
+}
+
 
 
 .text-color {
     color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+.info-box {
+        /* box-shadow: 19px -20px 34px 22px rgba(0,0,0,0.1); */
+        border: 3ch;
+        /* width: 1000px;
+        height: 500px; */
+        margin-bottom: 10ch;
+        justify-content: center;
+        display: flex;
 }

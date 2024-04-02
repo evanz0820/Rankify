@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar"
 import "./Search.css"
 import Footer from "./Footer";
+import Searchbar from "./Searchbar";
 
 
 function Search(){
@@ -11,8 +12,8 @@ function Search(){
             <h1>Welcome to the Search page</h1>
 
             <h1>Results for: 
-            this is now the about page dlafjlajafljalkjfakjflkaj
             </h1>
+            <Searchbar></Searchbar>
             <Footer></Footer>
         </div>
 
