@@ -51,11 +51,11 @@ function Navbar({ onPlaceIDChange }) { // Pass onPlaceIDChange as prop
 
 
       <div className="tab-container flex justify-center">
-        <Link to="/" className="">Home</Link>
+        <Link to="/" className="pr-2">Home</Link>
         {isLoggedIn ? (
           <>
             {/* <Link to="/write-review" className="">Write a Review</Link> */}
-            <Link to="/create" className="">Write a Review</Link>
+            <Link to="/create" className="pr-2">Write a Review</Link>
             <button onClick={handleLogout}>Logout</button>
           </>
         ) : (

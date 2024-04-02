@@ -95,6 +95,7 @@ app.post("/login", (req, res) => {
         }
         if(data.length > 0 ){
             req.session.username = data[0].name;
+            req.session.userID = data[0].id; //Added to to save the user's session ID
             // console.log(data)
             // console.log(req.session.username);
             // return res.json("Success");
@@ -107,19 +108,37 @@ app.post("/login", (req, res) => {
 }
 )
 
-
-
 // Maps stuff
+
+// app.get('/place-details/:placeID', async (req, res) => {
+//     const { placeID } = req.params;
+//     try {
+//         const response = await fetch(
+//             `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=`
+//         );
+//         if (response.ok) {
+//             const data = await response.json();
+//             res.json(data.result);
+//         } else {
+//             console.error("Failed to fetch place details");
+//             res.status(500).json({ error: "Failed to fetch place details" });
+//         }
+//     } catch (error) {
+//         console.error("Error fetching place details:", error);
+//         res.status(500).json({ error: "Error fetching place details" });
+//     }
+// });
 
 app.get('/place-details/:placeID', async (req, res) => {
     const { placeID } = req.params;
     try {
-        const response = await fetch(
-            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=`
+        const placeResponse = await fetch(
+            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=AIzaSyDtZmb0MNgfPKg0GTMZ8l3ErR4AWhR9zE0`
         );
-        if (response.ok) {
-            const data = await response.json();
-            res.json(data.result);
+        if (placeResponse.ok) {
+            const placeData = await placeResponse.json();
+            const reviews = await getReviewsFromDatabase(placeID); // Fetch reviews from the database
+            res.json({ placeDetails: placeData.result, reviews: reviews });
         } else {
             console.error("Failed to fetch place details");
             res.status(500).json({ error: "Failed to fetch place details" });
@@ -130,7 +149,48 @@ app.get('/place-details/:placeID', async (req, res) => {
     }
 });
 
+
+
+
 // End of google stuff
+
+
+// Handle review submission
+app.post("/submit-review", (req, res) => {
+    const { placeID, reviewContent, rating } = req.body;
+    const userID = req.session.userID; // Assuming you store the user's ID in the session
+
+    // Insert the review into the database
+    const sql = "INSERT INTO reviews (place_id, review_content, rating, review_date, id) VALUES (?, ?, ?, NOW(), ?)";
+    const values = [placeID, reviewContent, rating, userID];
+    
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error("Error submitting review:", err);
+            res.status(500).json({ error: "Failed to submit review" });
+        } else {
+            console.log("Review submitted successfully");
+            res.json({ success: true });
+        }
+    });
+});
+
+
+// getting from reviews table
+async function getReviewsFromDatabase(placeID) {
+    // Query your database for reviews associated with the given place_id
+    const sql = "SELECT r.*, l.name FROM reviews r JOIN login l ON r.id = l.id WHERE r.place_id = ?";
+    return new Promise((resolve, reject) => {
+        db.query(sql, [placeID], (err, reviews) => {
+            if (err) {
+                console.error("Error fetching reviews:", err);
+                reject(err);
+            } else {
+                resolve(reviews);
+            }
+        });
+    });
+}
 
 app.listen(8081, ()=> {
     console.log("listening");
