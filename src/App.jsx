@@ -93,13 +93,18 @@ function App() {
     ]
   };
 
+  const stars = []
+
+  function ratingToStars(rating) {
+    // TODO: rating to stars function to render .map stars  
+  }
   return (
     <div className="App">
       {/* Navbar+Hero hydrid section */}
       <section className="relative flex flex-col text-white bg-[url('src/assets/homepage-hero-image.jpg')] bg-center bg-cover bg-blend-overlay bg-fixed bg-black/45">
         <Navbar isTransparent={true} />
         {/* Hero Content  */}
-        <div className="container-full h-[800px] flex flex-col items-center justify-center px-6 pt-6">
+        <div className="container-full h-screen flex flex-col items-center justify-center px-6 pt-6">
           <div className="flex flex-col mb-10">
             <h1 className="max-w-lg text-center mx-auto text-[2.9rem] leading-none font-extrabold md:text-[4rem] md:leading-tight mb-5">
               Your <span className="text-orange-100">Voice,</span> Your{" "}
@@ -144,6 +149,7 @@ function App() {
                 <h3 className="text-sm mb-2">{userInfo.location}</h3>
                 <h3 className="text-md font-medium">{review.user}</h3>
                 <div className="flex items-center">
+                  {/* TODO: Stars match up to fetched rating */}
                   <label for="star5" className="text-2xl text-emerald-500">&#9733;</label>
                   <label for="star4" className="text-2xl text-emerald-500">&#9733;</label>
                   <label for="star3" className="text-2xl text-emerald-500">&#9733;</label>
