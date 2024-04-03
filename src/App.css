@@ -1,16 +1,25 @@
 .App{
     /* height:100vh; */
     width:auto;
+<<<<<<< HEAD
+=======
+    background-color: lightgreen;
+>>>>>>> parent of 4adc222 (Merge pull request #10 from evanz0820/E)
     display:flex;
     flex-direction: column;
 }
 
+<<<<<<< HEAD
 html, body {
   margin: 0;
   padding: 0;
 } 
 
 /* .search-bar{
+=======
+
+.search-bar{
+>>>>>>> parent of 4adc222 (Merge pull request #10 from evanz0820/E)
     display: flex;
     justify-content:center;
     align-items:center;
@@ -53,7 +62,11 @@ html, body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+<<<<<<< HEAD
 } */
+=======
+}
+>>>>>>> parent of 4adc222 (Merge pull request #10 from evanz0820/E)
 
 
 .burgers-container {
@@ -73,4 +86,8 @@ html, body {
     max-width: 100%;
     height: auto;
     margin-bottom: 10px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> parent of 4adc222 (Merge pull request #10 from evanz0820/E)

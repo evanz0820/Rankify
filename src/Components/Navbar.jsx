@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 import React, {useState} from 'react';
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import Searchbar from './Searchbar'; // Import the Searchbar component
 
 function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
+=======
+import react from 'react'
+import "./Navbar.css"
+import { Link } from 'react-router-dom';
 
-  const [placeID, setPlaceID] = useState(null);
+>>>>>>> parent of 4adc222 (Merge pull request #10 from evanz0820/E)
 
+function Navbar(){
+
+<<<<<<< HEAD
   const handlePlaceIDChange = (newPlaceID) => {
     setPlaceID(newPlaceID);
   }
@@ -102,6 +110,24 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
     </div>
     </nav>
   );
+=======
+
+    return(
+        <div className="Navbar">
+
+            <h1 className="R-logo">Rankify</h1>
+
+            <div className="nav-container">
+                <Link to="/" className="navbar-item">Home</Link>
+                <h1 className="navbar-item">About</h1>
+                <Link to="/login" className="navbar-item">Login</Link>
+
+            </div>
+            
+            
+        </div>
+    )
+>>>>>>> parent of 4adc222 (Merge pull request #10 from evanz0820/E)
 }
 
-export default Navbar;
+export default Navbar
