@@ -57,7 +57,7 @@ function Search() {
                                 <p>{review.review_content}</p>
                                 <p>Rating: {review.rating}</p>
                                 <p className="author">Author: {review.name}</p> {/* Displaying user's name */}
-                                <p className="date">Date: {review.review_date}</p>
+                                {/* <p className="date">Date: {review.review_date}</p> */}
                             </div>
                         ))}
                     </div>
