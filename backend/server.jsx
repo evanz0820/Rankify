@@ -43,10 +43,11 @@ app.use(session({
 }))
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password:"",
-    database: "signup"
+    host: "ezhang5@codd.cs.gsu.edu",
+    user: "ezhang5",
+    password:"ezhang5",
+    database: "ezhang5",
+    port: 3306
 })
 
 app.get('/homelogin', (req,res) => {
@@ -71,7 +72,7 @@ app.post("/logout", (req, res) => {
 
 app.post("/signup", (req, res) => {
     console.log("Received signup request"); // Add this line
-    const sql = "INSERT INTO login (`name`, `email`,`password`) VALUES (?)";
+    const sql = "INSERT INTO Users (`name`, `email`,`password`) VALUES (?)";
     const values = [
         req.body.name,
         req.body.email,
@@ -87,7 +88,7 @@ app.post("/signup", (req, res) => {
 )
 
 app.post("/login", (req, res) => {
-    const sql = "SELECT * FROM login WHERE `email` = ? AND `password` = ?";
+    const sql = "SELECT * FROM Users WHERE `email` = ? AND `password` = ?";
     db.query(sql,[req.body.email, req.body.password], (err, data) => {
         if(err){
             // return res.json("Error");
@@ -115,7 +116,7 @@ app.get('/place-details/:placeID', async (req, res) => {
     const { placeID } = req.params;
     try {
         const response = await fetch(
-            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=`
+            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=AIzaSyBS9ofn_uM3OOpEouACZXTvNvp0dLiZfHc`
         );
         if (response.ok) {
             const data = await response.json();
