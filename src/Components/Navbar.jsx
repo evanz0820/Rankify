@@ -1,8 +1,16 @@
-import react from "react";
+import React, {useState} from 'react';
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import Searchbar from './Searchbar'; // Import the Searchbar component
 
-function Navbar({ isTransparent = false }) {
+function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
+
+  const [placeID, setPlaceID] = useState(null);
+
+  const handlePlaceIDChange = (newPlaceID) => {
+    setPlaceID(newPlaceID);
+  }
+
   return (
     <nav
       className={`flex container-full items-center fixed justify-around top-0 h-20 w-full z-10 ${
@@ -77,6 +85,21 @@ function Navbar({ isTransparent = false }) {
           Login
         </Link>
       </div>
+      <div className="bg-red-400 p-4 flex justify-between items-center">
+      <h1 className="text-black text-2xl">Rankify</h1>
+      <div className='flex w-3/5 '>
+        <Searchbar onPlaceIDChange={handlePlaceIDChange} />
+
+        {/* Centering the button */}
+        <Link className="border-2 border-black rounded w-1/5 flex justify-center items-center" to={`/search/${placeID}`}>
+          <button className="">Search!</button>
+        </Link> 
+      </div>
+      <div className="flex justify-center"> {/* Center align the content */}
+        <Link to="/" className="text-black mr-4">Home</Link>
+        <Link to="/about" className="text-black mr-4">About</Link>
+      </div>
+    </div>
     </nav>
   );
 }

@@ -18,10 +18,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/search" element={<Search />} /> 
         <Route path="/profile" element={<Profile />} /> 
         <Route path="/about" element={<AboutUs />} /> 
+        <Route path="/search/:placeID" element={<Search />} /> {/* Pass placeID as URL parameter */}
+        <Route path="/homelogin" element={<HomeLogin/>} />
+        <Route path="/signup" element={<Signup/>} />
+
+
         
 
       </Routes>
     </BrowserRouter>
+  
     {/* <App /> */}
   </React.StrictMode>,
 )

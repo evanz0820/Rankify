@@ -5,26 +5,15 @@ import fetchData from "./constants/Api";
 import Search from "./Components/Search";
 import { Link } from "react-router-dom";
 import Footer from "./Components/Footer";
+import Login from "./Components/Login";
+import { Link } from 'react-router-dom';
+import Searchbar from "./Components/Searchbar";
 
 function App() {
-  const [burgers, setBurgers] = useState([]);
+
+  const [placeID, setPlaceID] = useState(null);
 
   useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const data = await fetchData();
-        console.log("Fetched data:", data); // Log fetched data
-        if (data && Array.isArray(data)) {
-          setBurgers(data); // Update state with fetched data if it's an array
-        } else {
-          console.error("Data is not an array:", data);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchDataFromApi();
   }, []); // Empty dependency array to run once on mount
 
   const userInfo = {
@@ -92,6 +81,9 @@ function App() {
       },
     ]
   };
+  const handlePlaceIDChange = (newPlaceID) => {
+    setPlaceID(newPlaceID);
+  }
 
   const stars = []
 
@@ -102,7 +94,7 @@ function App() {
     <div className="App">
       {/* Navbar+Hero hydrid section */}
       <section className="relative flex flex-col text-white bg-[url('src/assets/homepage-hero-image.jpg')] bg-center bg-cover bg-blend-overlay bg-fixed bg-black/45">
-        <Navbar isTransparent={true} />
+        <Navbar isTransparent={true} onPlaceIDChange={handlePlaceIDChange}/>
         {/* Hero Content  */}
         <div className="container-full h-screen flex flex-col items-center justify-center px-6 pt-6">
           <div className="flex flex-col mb-10">
@@ -161,10 +153,11 @@ function App() {
             ))}
           </div>
         </div>
+        
       </div>
       <Footer />
     </div>
   );
 }
-
+  
 export default App;
