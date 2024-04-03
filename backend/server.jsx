@@ -110,25 +110,6 @@ app.post("/login", (req, res) => {
 
 // Maps stuff
 
-// app.get('/place-details/:placeID', async (req, res) => {
-//     const { placeID } = req.params;
-//     try {
-//         const response = await fetch(
-//             `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=`
-//         );
-//         if (response.ok) {
-//             const data = await response.json();
-//             res.json(data.result);
-//         } else {
-//             console.error("Failed to fetch place details");
-//             res.status(500).json({ error: "Failed to fetch place details" });
-//         }
-//     } catch (error) {
-//         console.error("Error fetching place details:", error);
-//         res.status(500).json({ error: "Error fetching place details" });
-//     }
-// });
-
 app.get('/place-details/:placeID', async (req, res) => {
     const { placeID } = req.params;
     try {
