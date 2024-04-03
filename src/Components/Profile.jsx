@@ -89,6 +89,9 @@ export default function Profile() {
           <h1>{userInfo.username}</h1>
           <h2 className="text-lg text-white font-semibold underline mb-3">{userInfo.location}</h2>
           <p>{userInfo.description}</p>
+          <button className="max-w-48 mt-5 bg-blend-overlay bg-fixed bg-black/70 hover:bg-black transition-colors duration-100 ease-in rounded-xl px-8 py-2 text-lg text-white tracking-wide">
+            Write a Review
+          </button>
         </div>
         <div className="profile-hero-overlay">
           <img
@@ -111,6 +114,7 @@ export default function Profile() {
                 <h3 className="text-sm">{userInfo.username}</h3>
                 <h3 className="text-sm mb-2">{userInfo.location}</h3>
                 <h3 className="text-md font-medium">{review.user}</h3>
+                {/* TODO: Stars match up to fetched rating */}
                 <div className="flex items-center">
                   <label for="star5" className="text-2xl text-emerald-500">&#9733;</label>
                   <label for="star4" className="text-2xl text-emerald-500">&#9733;</label>

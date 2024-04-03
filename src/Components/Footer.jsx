@@ -1,17 +1,5 @@
 export default function Footer() {
   return (
-<<<<<<< HEAD
-    <footer className="bg-black text-white py-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <p className="text-sm">&copy; 2024 Rankify</p>
-        <div>
-          <a href="#" className="text-gray-300 hover:text-white mr-4">
-            About
-          </a>
-          <a href="#" className="text-gray-300 hover:text-white">
-            Contact
-          </a>
-=======
     <footer className="bg-white dark:bg-black">
       <div className="mx-auto w-full max-w-screen-xl py-6 lg:py-8">
         <div className="md:flex md:justify-between">
@@ -164,7 +152,6 @@ export default function Footer() {
               <span className="sr-only">GitHub account</span>
             </a>
           </div>
->>>>>>> 7363c618376168fbe1838ee59fc980ff5ad79e8a
         </div>
       </div>
     </footer>
