@@ -46,7 +46,8 @@ const db = mysql.createConnection({
     host: "ezhang5@codd.cs.gsu.edu",
     user: "ezhang5",
     password:"ezhang5",
-    database: "ezhang5"
+    database: "ezhang5",
+    port: 3306
 })
 
 app.get('/homelogin', (req,res) => {
@@ -71,7 +72,7 @@ app.post("/logout", (req, res) => {
 
 app.post("/signup", (req, res) => {
     console.log("Received signup request"); // Add this line
-    const sql = "INSERT INTO login (`name`, `email`,`password`) VALUES (?)";
+    const sql = "INSERT INTO Users (`name`, `email`,`password`) VALUES (?)";
     const values = [
         req.body.name,
         req.body.email,
@@ -87,7 +88,7 @@ app.post("/signup", (req, res) => {
 )
 
 app.post("/login", (req, res) => {
-    const sql = "SELECT * FROM login WHERE `email` = ? AND `password` = ?";
+    const sql = "SELECT * FROM Users WHERE `email` = ? AND `password` = ?";
     db.query(sql,[req.body.email, req.body.password], (err, data) => {
         if(err){
             // return res.json("Error");
