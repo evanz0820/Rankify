@@ -12,8 +12,8 @@ require('dotenv').config(); // Load environment variables from .env file
 })();
 
 
-const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY; 
-console.log(googleMapsApiKey)
+// const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY; 
+// console.log(googleMapsApiKey)
 
 
 const mysql = require("mysql");
@@ -117,7 +117,7 @@ app.get('/place-details/:placeID', async (req, res) => {
     const { placeID } = req.params;
     try {
         const placeResponse = await fetch(
-            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=${googleMapsApiKey}`
+            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=`
         );
         if (placeResponse.ok) {
             const placeData = await placeResponse.json();
