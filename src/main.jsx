@@ -5,19 +5,24 @@ import './index.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Components/Login.jsx"
 import Search from  "./Components/Search.jsx"
-
+import Signup from "./Components/Signup.jsx"
+import HomeLogin from "./Components/HomeLogin.jsx"
+import About from "./Components/About.jsx"
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-
-  <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/login" element={<Login />} /> {/* Route to the Login component */}
-        <Route path="/search" element={<Search />} /> 
-        
-
-      </Routes>
+  
+    <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />} />
+            {/* <Route path="/search" element={<Search />} />  */}
+            <Route path="/search/:placeID" element={<Search />} /> {/* Pass placeID as URL parameter */}
+            <Route path="/signup" element={<Signup/>}></Route>
+            <Route path="/homelogin" element={<HomeLogin/>}></Route>
+            <Route path="/login" element={<Login />} /> {/* Add a Route for Login */}
+            <Route path="/about" element={<About />}></Route>
+          </Routes>
     </BrowserRouter>
+  
     {/* <App /> */}
   </React.StrictMode>,
 )
