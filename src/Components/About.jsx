@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import BoxBasic from "./Box";
+import Accordion from "./Accordion";
 import "./About.css"
 
 function About () {
@@ -15,11 +16,13 @@ function About () {
         </div>
         </div>
         <br></br>
-        <div className="info-box">
-            <BoxBasic></BoxBasic>
-            <BoxBasic></BoxBasic>
-            <BoxBasic></BoxBasic>
+        <div className="color-intro">
+        <h1>
+            this is the about page
+        </h1>
+        <h3>this is some introduction</h3>
         </div>
+        <Accordion className="accordion"></Accordion>
              
         <Footer></Footer>
 
