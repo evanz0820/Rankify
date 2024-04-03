@@ -133,7 +133,7 @@ app.get('/place-details/:placeID', async (req, res) => {
     const { placeID } = req.params;
     try {
         const placeResponse = await fetch(
-            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=AIzaSyDtZmb0MNgfPKg0GTMZ8l3ErR4AWhR9zE0`
+            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=`
         );
         if (placeResponse.ok) {
             const placeData = await placeResponse.json();
