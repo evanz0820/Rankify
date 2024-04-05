@@ -19,8 +19,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/profile" element={<Profile />} /> 
         <Route path="/about" element={<AboutUs />} /> 
         <Route path="/search/:placeID" element={<Search />} /> {/* Pass placeID as URL parameter */}
-        <Route path="/homelogin" element={<HomeLogin/>} />
-        <Route path="/signup" element={<Signup/>} />
+        {/* 4/4/24 RYAN'S NOTE: I had to comment these out to make stuff work, fix/include these later */}
+        
+        {/* <Route path="/homelogin" element={<HomeLogin/>} />  */}
+        {/* <Route path="/signup" element={<Signup/>} /> */}
 
 
         

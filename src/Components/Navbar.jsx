@@ -85,21 +85,23 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
           Login
         </Link>
       </div>
-      <div className="bg-red-400 p-4 flex justify-between items-center">
+
+      {/* 4/4/2024 RYAN'S NOTE: Commented this out cuz it overlapped with my static navbar navbar */}
+      {/*<div className="bg-red-400 p-4 flex justify-between items-center">
       <h1 className="text-black text-2xl">Rankify</h1>
       <div className='flex w-3/5 '>
         <Searchbar onPlaceIDChange={handlePlaceIDChange} />
 
-        {/* Centering the button */}
+        {/* Centering the button 
         <Link className="border-2 border-black rounded w-1/5 flex justify-center items-center" to={`/search/${placeID}`}>
           <button className="">Search!</button>
         </Link> 
       </div>
-      <div className="flex justify-center"> {/* Center align the content */}
+      <div className="flex justify-center"> {/* Center align the content 
         <Link to="/" className="text-black mr-4">Home</Link>
         <Link to="/about" className="text-black mr-4">About</Link>
       </div>
-    </div>
+    </div>*/}
     </nav>
   );
 }

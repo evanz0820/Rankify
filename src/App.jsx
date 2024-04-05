@@ -6,7 +6,6 @@ import Search from "./Components/Search";
 import { Link } from "react-router-dom";
 import Footer from "./Components/Footer";
 import Login from "./Components/Login";
-import { Link } from 'react-router-dom';
 import Searchbar from "./Components/Searchbar";
 
 function App() {
