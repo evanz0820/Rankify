@@ -43,10 +43,10 @@ app.use(session({
 }))
 
 const db = mysql.createConnection({
-    host: "ezhang5@codd.cs.gsu.edu",
-    user: "ezhang5",
-    password:"ezhang5",
-    database: "ezhang5"
+    host: "localhost",
+    user: "root",
+    password:"",
+    database: "signup"
 })
 
 app.get('/homelogin', (req,res) => {
