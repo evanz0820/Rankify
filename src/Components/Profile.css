@@ -5,14 +5,14 @@
 
 /* ProfileHero styles */
 .profile-hero {
-    height: 700px;
+    height: 850px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     overflow: hidden;
     position: relative;
-    margin-top: 60px;
+    padding-top: 40px
 }
 
 .profile-hero-overlay {

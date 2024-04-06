@@ -8,6 +8,7 @@ export default {
     "./src/Components/Search.jsx",
     "./src/Components/Login.jsx",
     "./src/Components/Footer.jsx",
+    "./src/Components/ProfileDropdown.jsx",
   ],
   theme: {
     extend: {},
