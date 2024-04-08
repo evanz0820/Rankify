@@ -9,6 +9,7 @@ export default {
     "./src/Components/Login.jsx",
     "./src/Components/Footer.jsx",
     "./src/Components/ProfileDropdown.jsx",
+    "./src/Components/Signup.jsx",
   ],
   theme: {
     extend: {},

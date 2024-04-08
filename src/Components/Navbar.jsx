@@ -14,19 +14,22 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
 
   const changeBackground = () => {
     if (window.scrollY >= 800) {
-      setNavBackground(true)
+      setNavBackground(true);
     } else {
       setNavBackground(false);
     }
-  }
+  };
 
-  window.addEventListener('scroll', changeBackground);
-  
+  window.addEventListener("scroll", changeBackground);
+
   return (
     <nav
       className={`flex container-full items-center fixed justify-around top-0 h-20 w-full z-10 ${
-        navBackground ? "bg-white border-b-2 border-opacity-25 border-b-gray-400 transition ease-in duration-200" : "bg-transparent transition ease-out duration-200"
-      }`}
+        navBackground && isTransparent
+          ? "bg-white border-b-2 border-opacity-25 border-b-gray-400 transition ease-in duration-200"
+          : "bg-transparent transition ease-out duration-200"
+      }
+      ${isTransparent === false && "bg-white"}`}
     >
       {/* Logo */}
       <Link to="/">
@@ -82,25 +85,33 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
 
       <div className="flex items-center justify-center font-semibold mr-1">
         {/* placeholder nav items; change later */}
-        <Link
-          to="/AboutUs"
-          className={`rounded-full px-4 py-2 text-md hidden md:inline truncate ${
-            navBackground ? "text-black transition ease-in duration-200" : "text-white transition ease-out duration-200"
-          }`}
-        >
-          Write a Review
-        </Link>
+        {isTransparent ? (
+          <Link
+            to="/AboutUs"
+            className={`rounded-full px-4 py-2 text-md hidden md:inline truncate ${
+              navBackground
+                ? "text-black transition ease-in duration-200"
+                : "text-white transition ease-out duration-200"
+            }`}
+          >
+            Write a Review
+          </Link>
+        ) : (
+          <Link
+            to="/AboutUs"
+            className={`rounded-full px-4 py-2 text-md hidden md:inline truncate text-black`}
+          >
+            Write a Review
+          </Link>
+        )}
         <button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            stroke-width="1.7"
             stroke="currentColor"
-            className={`w-6 h-6 md:hidden mr-4 ${
-              navBackground ? "text-black" : "text-gray-100"
-            }`}
-            
+            className={`w-6 h-6 text-black md:hidden mr-4`}
           >
             <path
               stroke-linecap="round"

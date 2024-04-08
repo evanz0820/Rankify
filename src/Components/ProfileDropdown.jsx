@@ -25,12 +25,18 @@ export default function ProfileDropdown() {
       </button>
       {openProfile && (
         <div className="absolute right-0 mt-2 w-36 py-2 bg-white text-gray-800 rounded-xl font-normal shadow-xl">
-            <Link to="/profile" className="block px-4 py-2 hover:bg-emerald-600 hover:text-white">
-                Profile
-            </Link>
-            <Link to="/" className="block px-4 py-2 hover:bg-emerald-600 hover:text-white">
-                Sign out
-            </Link>
+          <Link
+            to="/profile"
+            className="block px-4 py-2 hover:bg-emerald-600 hover:text-white"
+          >
+            Profile
+          </Link>
+          <Link
+            to="/"
+            className="block px-4 py-2 hover:bg-emerald-600 hover:text-white"
+          >
+            Sign out
+          </Link>
         </div>
       )}
     </div>

@@ -30,9 +30,9 @@ function Signup() {
         }
     }
   return (
-    <div className="w-full">
-        <Navbar />
-        <div className="signup-container">
+    <div className="w-full bg-orange-500">
+        <Navbar isTransparent={false}/>
+        <div className="signup-container pt-24">
             <h1>Sign Up form</h1>
             <form action="" onSubmit={handleSubmit}>
 
