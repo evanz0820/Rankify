@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name }} Reviews</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>{{ restaurant.name }} Reviews</h1>
+    
+    <div>
+        <h2>Reviews</h2>
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>Rating: {{ review.rating }}</strong><br>
+                    {{ review.comment }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
