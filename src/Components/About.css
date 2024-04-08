@@ -13,10 +13,13 @@
     filter: brightness(40%);
 }
 
+/* body {
+    margin-left: 0px;
+} */
 .page-title {
     align-items: flex-end;
     vertical-align: baseline;
-    margin-top: 0.05px;
+    margin-top: 25px;
     font-size: 60px;
 }
 
