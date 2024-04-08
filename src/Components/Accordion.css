@@ -1,12 +1,12 @@
 .wrapper {
     display: flex;
-    height: 100vh;
+    height: 70vh;
     width: 100vw;
-    justify-content: left;
+    justify-content: center;
     align-items: left;
     color: black;
     margin-top: 3px;
-    /* margin-bottom: 3px; */
+    margin-bottom: 60px;
 }
 
 
