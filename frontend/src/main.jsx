@@ -9,8 +9,7 @@ import Signup from "./Components/Signup.jsx"
 import HomeLogin from "./Components/HomeLogin.jsx"
 import About from "./Components/About.jsx"
 import Create from "./pages/Create.jsx"
-
-
+import LocationDetails from './Components/LocationDetails.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -24,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/homelogin" element={<HomeLogin/>}></Route>
             <Route path="/login" element={<Login />} />
             <Route path="/about" element={<About />}></Route>
+            <Route path="/location/:placeID" element={<LocationDetails />} />
             {/* First CRUD */}
             <Route path="/create" element={<Create />}></Route>
           </Routes>

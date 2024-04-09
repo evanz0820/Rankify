@@ -20,7 +20,7 @@ function Create() {
             await axios.post('http://localhost:8081/submit-review', {
                 placeID,
                 reviewContent,
-                rating,
+                rating
             });
 
             // Reset form fields after successful submission
@@ -34,29 +34,37 @@ function Create() {
   return (
     <div className="">
             <Navbar />
-            <div>
-                <h1>Write a Review!!!</h1>
-                <div className="">
-                    <label>Search the business that you need to review</label>
+            <div className="my-8">
+                
+                <div className="max-w-md mx-auto">
+                    <h1 className="text-3xl font-bold mb-4">Write a Review!!!</h1>
+                    <label className="block mb-2">Search the business that you need to review</label>
                     <Searchbar onPlaceIDChange={handlePlaceIDChange} />
 
-                    <label>Leave a review comment</label>
+                    <label className="block mb-2">Leave a review comment</label>
                     <input
                         type="text"
                         placeholder="Leave a message"
                         value={reviewContent}
                         onChange={(e) => setReviewContent(e.target.value)}
+                        className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                     />
 
-                    <label>Leave a rating</label>
+                    <label className="block mb-2">Leave a rating</label>
                     <input
                         type="text"
                         placeholder="Leave a message"
                         value={rating}
                         onChange={(e) => setRating(e.target.value)}
+                        className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                     />
 
-                    <button onClick={handleSubmitReview}>Submit Review</button>
+                    <button
+                        onClick={handleSubmitReview}
+                        className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
+                    >
+                        Submit Review
+                    </button>
                 </div>
             </div>
         </div>

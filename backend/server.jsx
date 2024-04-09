@@ -1,5 +1,5 @@
 const express = require("express");
-require('dotenv').config(); // Load environment variables from .env file
+
 
 // Use async function to dynamically import node-fetch
 (async () => {
@@ -12,9 +12,6 @@ require('dotenv').config(); // Load environment variables from .env file
 })();
 
 
-// const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY; 
-// console.log(googleMapsApiKey)
-
 
 const mysql = require("mysql");
 const cors = require("cors");
@@ -23,6 +20,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 const app = express();
+
 
 app.use(cors({
     // Make sure to use http://localhost:5173 and not  http://localhost:5173/
@@ -45,6 +43,14 @@ app.use(session({
     } // set the session cookie properties
 }))
 
+
+app.get("/get-logged-in-user-id", (req, res) => {
+    if (req.session.userID) {
+        res.json({ userID: req.session.userID });
+    } else {
+        res.status(404).json({ error: "User ID not found in session" });
+    }
+});
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -98,7 +104,7 @@ app.post("/login", (req, res) => {
         }
         if(data.length > 0 ){
             req.session.username = data[0].name;
-            req.session.userID = data[0].id; //Added to to save the user's session ID
+            req.session.userID = data[0].id;
             // console.log(data)
             // console.log(req.session.username);
             // return res.json("Success");
@@ -133,11 +139,9 @@ app.get('/place-details/:placeID', async (req, res) => {
     }
 });
 
-
-
-
 // End of google stuff
 
+// Handle review submission
 
 // Handle review submission
 app.post("/submit-review", (req, res) => {
@@ -171,6 +175,96 @@ async function getReviewsFromDatabase(placeID) {
                 reject(err);
             } else {
                 resolve(reviews);
+            }
+        });
+    });
+}
+// End of review stuff
+
+app.post("/submit-comment", (req, res) => {
+    const { placeID, commentContent, reviewTime } = req.body;
+    // console.log(reviewTime);
+    const userID = req.session.userID;
+
+    // Check if reviewTime is provided and convert it to a valid datetime format
+    let formattedTime = null;
+    if (reviewTime){
+        // Check if reviewTime is in ISO format
+        if (reviewTime.includes('T')) {
+            // Extract the date part from the ISO string
+            const datePart = reviewTime.split('T')[0];
+            // Combine with the time part if available, or set it to '00:00:00' by default
+            formattedTime = datePart + (reviewTime.split('T')[1] ? ' ' + reviewTime.split('T')[1].split('.')[0] : ' 00:00:00');
+        } else {
+            // Convert UNIX timestamp to milliseconds
+            const timestamp = parseInt(reviewTime) * 1000;
+            // Create a new Date object using the timestamp
+            const date = new Date(timestamp);
+            // Format the date as a datetime string
+            formattedTime = date.toISOString().slice(0, 19).replace('T', ' ');
+        }
+    }
+    // console.log(formattedTime);
+    // Insert the comment along with the review_time into the database
+    const sql = "INSERT INTO comments (place_id, comment_content, comment_date, id, review_time) VALUES (?, ?, NOW(), ?, ?)";
+    const values = [placeID, commentContent, userID, formattedTime];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error("Error submitting comment:", err);
+            res.status(500).json({ error: "Failed to submit comment" });
+        } else {
+            console.log("Comment submitted successfully");
+            res.json({ success: true });
+        }
+    });
+});
+
+
+app.get('/get-comments/:placeID/:reviewTime', async (req, res) => {
+    const { placeID, reviewTime } = req.params;
+    try {
+        // console.log("Fetching comments for placeID:", placeID, "and reviewTime:", reviewTime); 
+        const comments = await getCommentsFromDatabase(placeID, reviewTime);
+        
+        res.json({ comments });
+    } catch (error) {
+        console.error("Error fetching comments:", error);
+        res.status(500).json({ error: "Error fetching comments" });
+    }
+});
+
+
+
+async function getCommentsFromDatabase(placeID, reviewTime) {
+    // Convert Unix timestamp to datetime format
+    let formattedTime = reviewTime;
+
+     // Check if the provided reviewTime is in UNIX timestamp format
+     if (!isNaN(reviewTime)) {
+        // Convert Unix timestamp to datetime format
+        formattedTime = new Date(reviewTime * 1000).toISOString().slice(0, 19).replace('T', ' ');
+        // reviewTime = formattedTime;
+    }
+    // const reviewDateTime = new Date(reviewTime * 1000).toISOString().slice(0, 19).replace('T', ' ');
+    // console.log(formattedTime);
+    // const sql = "SELECT * FROM comments WHERE place_id = ? AND review_time = ?";
+    const sql = `
+    SELECT c.*, l.name AS user_name
+    FROM comments c
+    INNER JOIN login l ON c.id = l.id
+    WHERE c.place_id = ? AND c.review_time = ?
+    `;
+
+
+    return new Promise((resolve, reject) => {
+        db.query(sql, [placeID, formattedTime], (err, comments) => {
+            if (err) {
+                console.error("Error fetching comments:", err);
+                reject(err);
+            } else {
+                // console.log("Fetched comments:", comments);
+                resolve(comments);
             }
         });
     });
