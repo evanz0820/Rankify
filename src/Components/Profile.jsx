@@ -2,12 +2,9 @@ import React from "react";
 import "./Profile.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import ReviewList from "./ReviewList";
 
 export default function Profile() {
-  // NOTE: Need to make banner/avatar editable using useState
-  // Integrate editable functionality using input elements
-  // - Separate into reusable components
-
   const userInfo = {
     userID: "0AB098234poIWEqwekln2",
     userAvatar: "src/assets/mcd-avatar.jpg",
@@ -110,38 +107,7 @@ export default function Profile() {
           <h2 className="text-3xl font-bold text-center underline underline-offset-4 decoration-2 tracking-tight text-gray-900 sm:text-4xl pb-10">
             Reviews
           </h2>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
-            {userInfo.reviews.map((review) => (
-              <div className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden">
-                <p className="text-sm font-light mb-1">{review.date}</p>
-                <h2 className="text-xl font-semibold mb-2">{review.title}</h2>
-                <h3 className="text-sm">{userInfo.username}</h3>
-                <h3 className="text-sm mb-2">{userInfo.location}</h3>
-                <h3 className="text-md font-medium">{review.user}</h3>
-                {/* TODO: Stars match up to fetched rating */}
-                <div className="flex items-center">
-                  <label for="star5" className="text-2xl text-emerald-500">
-                    &#9733;
-                  </label>
-                  <label for="star4" className="text-2xl text-emerald-500">
-                    &#9733;
-                  </label>
-                  <label for="star3" className="text-2xl text-emerald-500">
-                    &#9733;
-                  </label>
-                  <label for="star2" className="text-2xl text-emerald-500">
-                    &#9733;
-                  </label>
-                  <label for="star1" className="text-2xl text-emerald-500">
-                    &#9733;
-                  </label>
-                </div>
-                <p className=" text-sm font-normal leading-relaxed mb-3">
-                  {review.description}
-                </p>
-              </div>
-            ))}
-          </div>
+          <ReviewList userInfo={userInfo} />
         </div>
       </div>
       <Footer />

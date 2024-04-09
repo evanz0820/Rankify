@@ -7,13 +7,12 @@ import { Link } from "react-router-dom";
 import Footer from "./Components/Footer";
 import Login from "./Components/Login";
 import Searchbar from "./Components/Searchbar";
+import ReviewList from "./Components/ReviewList";
 
 function App() {
-
   const [placeID, setPlaceID] = useState(null);
 
-  useEffect(() => {
-  }, []); // Empty dependency array to run once on mount
+  useEffect(() => {}, []); // Empty dependency array to run once on mount
 
   const userInfo = {
     userID: "0AB098234poIWEqwekln2",
@@ -78,22 +77,18 @@ function App() {
           "I've been a loyal fan of McDonald's for years, and it never disappoints! Whenever I'm in need of a quick and tasty meal, McDonald's is my go-to spot. Their classic Big Mac never fails to satisfy my hunger cravings, and the fries are always crispy and delicious. I also love the convenience of their drive-thru service, which makes grabbing a meal on the go super easy. The staff are always friendly and efficient, ensuring that I have a pleasant dining experience every time. Overall, McDonald's has consistently provided me with great-tasting food and excellent service, making it my favorite fast-food restaurant!",
         rating: 4,
       },
-    ]
+    ],
   };
+
   const handlePlaceIDChange = (newPlaceID) => {
     setPlaceID(newPlaceID);
-  }
-
-  const stars = []
-
-  function ratingToStars(rating) {
-    // TODO: rating to stars function to render .map stars  
-  }
+  };
+  
   return (
     <div className="App">
       {/* Navbar+Hero hydrid section */}
       <section className="relative flex flex-col text-white bg-[url('src/assets/homepage-hero-image.jpg')] bg-center bg-cover bg-blend-overlay bg-fixed bg-black/45">
-        <Navbar isTransparent={true} onPlaceIDChange={handlePlaceIDChange}/>
+        <Navbar isTransparent={true} onPlaceIDChange={handlePlaceIDChange} />
         {/* Hero Content  */}
         <div className="container-full h-screen flex flex-col items-center justify-center px-6 pt-6">
           <div className="flex flex-col mb-10">
@@ -115,7 +110,7 @@ function App() {
           </div>
         </div>
       </section>
-      
+
       {/* Render fetched data */}
       <div className="container-full pb-24">
         <div className="relative flex bg-white py-24">
@@ -130,33 +125,15 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="container mx-auto px-8">
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
-            {userInfo.reviews.map((review) => (
-              <div className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden">
-                <p className="text-sm font-light mb-1">{review.date}</p>
-                <h2 className="text-xl font-semibold mb-2">{review.title}</h2>
-                <h3 className="text-sm">{userInfo.username}</h3>
-                <h3 className="text-sm mb-2">{userInfo.location}</h3>
-                <h3 className="text-md font-medium">{review.user}</h3>
-                <div className="flex items-center">
-                  {/* TODO: Stars match up to fetched rating */}
-                  <label for="star5" className="text-2xl text-emerald-500">&#9733;</label>
-                  <label for="star4" className="text-2xl text-emerald-500">&#9733;</label>
-                  <label for="star3" className="text-2xl text-emerald-500">&#9733;</label>
-                  <label for="star2" className="text-2xl text-emerald-500">&#9733;</label>
-                  <label for="star1" className="text-2xl text-emerald-500">&#9733;</label>
-                </div>
-                <p className=" text-sm font-normal leading-relaxed mb-3">{review.description}</p>
-              </div>
-            ))}
+        <div className="container-full">
+          <div className="container mx-auto py-8 px-8">
+            <ReviewList userInfo={userInfo} />
           </div>
         </div>
-        
       </div>
       <Footer />
     </div>
   );
 }
-  
+
 export default App;

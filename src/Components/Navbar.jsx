@@ -13,7 +13,7 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
   };
 
   const changeBackground = () => {
-    if (window.scrollY >= 800) {
+    if (window.scrollY >= 700) {
       setNavBackground(true);
     } else {
       setNavBackground(false);
