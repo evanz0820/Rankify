@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import "./Search.css";
 import Navbar from "./Navbar";
 import { Link, useParams } from "react-router-dom";
 
@@ -30,19 +31,37 @@ function Search() {
     }, [placeID]);
 
     return (
-        <div className="Search-Container mt-20">
+        <div className="Search">
             <Navbar />
-            <h1 className="ml-2 my-8 text-1xl font-bold">Welcome to the Search page</h1>
             {placeDetails && (
                 <div className="my-8 mx-2">
-                    <h1 className="text-3xl font-bold mb-4">{placeDetails && placeDetails.name}</h1>
-                    <p className="mb-2"><span className="font-semibold">Address:</span> {placeDetails && placeDetails.formatted_address}</p>
-                    <p className="mb-2"><span className="font-semibold">Phone Number:</span> {placeDetails && placeDetails.formatted_phone_number}</p>
-                    <p className="mb-2"><span className="font-semibold">Rating:</span> {placeDetails && placeDetails.rating}</p>
+                    <div className="search-hero">
+                        <div className="search-hero-content">
+                            <img
+                                className="search-avatar"
+                                src={placeDetails.icon}
+                                alt="search avatar"
+                            />
+                            <h1>{placeDetails.name}</h1>
+                            <h2 className="text-lg text-black font-semibold underline mb-3">
+                                {placeDetails.formatted_address}
+                            </h2>
+                            <h2 className="text-lg text-black font-semibold mb-3">
+                                {placeDetails.formatted_phone_number}
+                                <span className="ml-8"> Rating:   </span>
+                                {placeDetails.rating}
+                            </h2>
+                            <p>{placeDetails.description}</p>
+                            <button className="max-w-48 mt-5 bg-blend-overlay bg-fixed bg-black/70 hover:bg-black transition-colors duration-100 ease-in rounded-xl px-8 py-2 text-lg text-white tracking-wide">
+                                Write a Review
+                            </button>
+                        </div>
+                    </div>
                     <h2 className="text-2xl font-bold mb-4">Google Reviews:</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {placeDetails && placeDetails.reviews.map((review, index) => (
-                        <div key={index} className="bg-gray-100 rounded-lg p-4">
+                        {placeDetails && placeDetails.reviews.map((review, index) => (
+                            <div key={index} className="bg-gray-100 rounded-lg p-4">
+                                <Link to={`/location/${placeID}?content=${encodeURIComponent(review.text)}&rating=${review.rating}&author=${encodeURIComponent(review.author_name)}&time=${review.time}`}></Link>
                         <Link to={`/location/${placeID}?content=${encodeURIComponent(review.text)}&rating=${review.rating}&author=${encodeURIComponent(review.author_name)}&time=${review.time}`}>
                             <p className="mb-2"><span className="font-semibold">Description: </span>{review.text}</p>
                             <p className="mb-2"><span className="font-semibold">Rating: </span> {review.rating}</p>

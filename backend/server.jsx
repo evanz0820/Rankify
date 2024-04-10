@@ -1,6 +1,9 @@
+const dotenv = require("dotenv");
+dotenv.config(); // Load the .env file
 const express = require("express");
 
-
+const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
+// Check if it's properly loaded
 // Use async function to dynamically import node-fetch
 (async () => {
     try {
@@ -9,7 +12,7 @@ const express = require("express");
     } catch (error) {
         console.error("Error importing node-fetch:", error);
     }
-})();
+})();   
 
 
 
@@ -123,7 +126,7 @@ app.get('/place-details/:placeID', async (req, res) => {
     const { placeID } = req.params;
     try {
         const response = await fetch(
-            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=AIzaSyBS9ofn_uM3OOpEouACZXTvNvp0dLiZfHc`
+            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=${googleMapsAPIKey}`
         );
         if (response.ok) {
             const data = await response.json();
