@@ -22,7 +22,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/signup" element={<Signup/>}></Route>
             <Route path="/homelogin" element={<HomeLogin/>}></Route>
             <Route path="/login" element={<Login />} />
-            <Route path="/about" element={<About />}></Route>
             <Route path="/location/:placeID" element={<LocationDetails />} />
             {/* First CRUD */}
             <Route path="/create" element={<Create />}></Route>
