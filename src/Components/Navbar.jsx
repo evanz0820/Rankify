@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import Searchbar from "./Searchbar"; // Import the Searchbar component
 import ProfileDropdown from "./ProfileDropdown";
+import axios from "axios";
 
 function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
   const [navBackground, setNavBackground] = useState(false);
@@ -10,6 +11,28 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
 
   const handlePlaceIDChange = (newPlaceID) => {
     setPlaceID(newPlaceID);
+  };
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    axios.get('http://localhost:8081/homelogin')
+      .then(res => {
+        setIsLoggedIn(res.data.valid);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  const handleLogout = () => {
+    axios.post('http://localhost:8081/logout')
+      .then(res => {
+        if (res.data.success) {
+          setIsLoggedIn(false);
+        } else {
+          console.log("Logout failed");
+        }
+      })
+      .catch(err => console.log(err));
   };
 
   const changeBackground = () => {
@@ -54,27 +77,28 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
 
       <div className="flex min-w-[150px] w-1/3 p-2 bg-white rounded-full shadow-md border-2 absolute">
         <div className="flex grow items-center rounded-full">
-          <input
+          <Searchbar onPlaceIDChange={handlePlaceIDChange} />
+          {/* <input
             className="w-full px-4 py-2 focus:outline-none text-black"
             type="text"
             placeholder="Search..."
             // value={searchTerm}
             // onChange={handleInputChange}
-          />
+          /> */}
           {/* <img src={searchIcon} alt='Search' className='search-icon' /> */}
-          <Link to="/search">
+          <Link to={`/search/${placeID}`}>
             <button className="flex-shrink-0 px-2 py-2 bg-emerald-500 text-white font-semibold rounded-full hover:bg-emerald-400 transition-colors duration-300 ease-in focus:outline-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 className="w-6 h-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                 />
               </svg>
@@ -109,13 +133,13 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.7"
+            strokeWidth="1.7"
             stroke="currentColor"
             className={`w-6 h-6 text-black md:hidden mr-4`}
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
             />
           </svg>
