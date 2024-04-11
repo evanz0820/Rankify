@@ -17,8 +17,8 @@ function Searchbar({ placeholder, onPlaceIDChange }) {
     return (
         <div className='search-bar w-1/2'>
             <div className="searchInputs ">
-                <input className="w-full h-10" ref={inputRef} type="text" placeholder={placeholder} />
-                {/* <div className="searchIcon"></div> */}
+                <input className="flex min-w-[150px] w-1/3 p-2 bg-white rounded-full shadow-md border-2 absolute" ref={inputRef} type="text" placeholder={placeholder} />
+
             </div>
             <div className="dataResult"></div>
         </div>
