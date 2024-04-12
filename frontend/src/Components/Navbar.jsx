@@ -79,10 +79,9 @@ function Navbar({ isTransparent = false },{ onPlaceIDChange }) { // Pass onPlace
       </Link>
 
 
-      <div className='flex w-full '>
+      {/* <div className='flex w-full '>
         <Searchbar className ="" onPlaceIDChange={handlePlaceIDChange} />
 
-        {/* Centering the button */}
         <Link to={`/search/${placeID}`}>
           <button className="flex-shrink-0 px-2 py-2 bg-emerald-500 text-white ml-6 font-semibold rounded-full hover:bg-emerald-400 transition-colors duration-300 ease-in focus:outline-none">
               <svg
@@ -102,7 +101,30 @@ function Navbar({ isTransparent = false },{ onPlaceIDChange }) { // Pass onPlace
           </button>
           
         </Link> 
-      </div>
+      </div> */}
+      <div className="flex min-w-[150px] w-1/3 p-2 bg-white rounded-full shadow-md border-2 absolute">
+        <div className="flex grow items-center rounded-full">
+          <Searchbar onPlaceIDChange={handlePlaceIDChange} />
+          <Link to={`/search/${placeID}`}>
+            <button className="flex-shrink-0 px-2 py-2 bg-emerald-500 text-white font-semibold rounded-full hover:bg-emerald-400 transition-colors duration-300 ease-in focus:outline-none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                  />
+                </svg>
+              </button>
+            </Link>
+          </div>
+        </div>
 
       {/* The content on the left side */}
       {/* <div className="tab-container flex justify-center">
