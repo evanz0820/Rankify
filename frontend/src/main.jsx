@@ -7,7 +7,6 @@ import Login from "./Components/Login.jsx"
 import Search from  "./Components/Search.jsx"
 import Signup from "./Components/Signup.jsx"
 import HomeLogin from "./Components/HomeLogin.jsx"
-import About from "./Components/About.jsx"
 import Create from "./pages/Create.jsx"
 import LocationDetails from './Components/LocationDetails.jsx'
 
