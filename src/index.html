@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ restaurant.name }} Reviews</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Reviews</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>{{ restaurant.name }} Reviews</h1>
-    
-    <div>
-        <h2>Reviews</h2>
-        <ul>
-            {% for review in reviews %}
-                <li>
-                    <strong>Rating: {{ review.rating }}</strong><br>
-                    {{ review.comment }}
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+  <header>
+    <h1>Restaurant Reviews</h1>
+  </header>
+  <div class="container" id="reviewsContainer">
+    <!-- Existing reviews will be dynamically added here -->
+  </div>
+  <form id="reviewForm">
+    <input type="text" id="reviewTitle" placeholder="Enter review title" required>
+    <textarea id="reviewContent" placeholder="Enter review content" required></textarea>
+    <input type="text" id="reviewAuthor" placeholder="Enter your name" required>
+    <select id="reviewRating" required>
+      <option value="1">1 star</option>
+      <option value="2">2 stars</option>
+      <option value="3">3 stars</option>
+      <option value="4">4 stars</option>
+      <option value="5">5 stars</option>
+    </select>
+    <button type="submit">Submit Review</button>
+  </form>
+  <script src="script.js"></script>
 </body>
 </html>
