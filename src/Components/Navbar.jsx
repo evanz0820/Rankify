@@ -26,10 +26,10 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
     <nav
       className={`flex container-full items-center fixed justify-around top-0 h-20 w-full z-10 ${
         navBackground && isTransparent
-          ? "bg-white border-b-2 border-opacity-25 border-b-gray-400 transition ease-in duration-200"
-          : "bg-transparent transition ease-out duration-200"
+          ? "bg-white border-b-2 border-opacity-25 border-b-gray-400 transition ease-in duration-100"
+          : "bg-transparent transition ease-out duration-100"
       }
-      ${isTransparent === false && "bg-white"}`}
+      ${isTransparent === false && "bg-white border-b-2 border-opacity-25 border-b-gray-400"}`}
     >
       {/* Logo */}
       <Link to="/">
@@ -63,7 +63,7 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
           />
           {/* <img src={searchIcon} alt='Search' className='search-icon' /> */}
           <Link to="/search">
-            <button className="flex-shrink-0 px-2 py-2 bg-emerald-500 text-white font-semibold rounded-full hover:bg-emerald-400 transition-colors duration-300 ease-in focus:outline-none">
+            <button className="flex-shrink-0 px-2 py-2 bg-emerald-500 text-white font-semibold rounded-full hover:bg-emerald-400 transition-colors duration-100 ease-in focus:outline-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -87,11 +87,11 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
         {/* placeholder nav items; change later */}
         {isTransparent ? (
           <Link
-            to="/AboutUs"
+            to="/review"
             className={`rounded-full px-4 py-2 text-md hidden md:inline truncate ${
               navBackground
-                ? "text-black transition ease-in duration-200"
-                : "text-white transition ease-out duration-200"
+                ? "text-black transition ease-in duration-100"
+                : "text-white transition ease-out duration-100"
             }`}
           >
             Write a Review

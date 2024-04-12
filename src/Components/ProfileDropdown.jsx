@@ -14,7 +14,7 @@ export default function ProfileDropdown() {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="h-full w-full object-cover hover:text-emerald-500 text-gray-300 transition-colors ease-in duration-200"
+          className="h-full w-full object-cover hover:text-emerald-500 text-gray-300 transition-colors ease-in duration-100"
         >
           <path
             fill-rule="evenodd"

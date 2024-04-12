@@ -8,6 +8,7 @@ import Search from  "./Components/Search.jsx"
 import Profile from './Components/Profile.jsx';
 import AboutUs from './Components/AboutUs.jsx';
 import Signup from './Components/Signup.jsx';
+import Review from './Components/Review.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         
         {/* <Route path="/homelogin" element={<HomeLogin/>} />  */}
         <Route path="/signup" element={<Signup />} />
+        <Route path="/review" element={<Review />} />
 
 
         

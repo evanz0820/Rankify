@@ -102,9 +102,9 @@ function App() {
               authentic, unbiased reviews on a wide range of products and
               services.
             </p>
-            <Link to="/AboutUs" className="self-center">
+            <Link to="/login" className="self-center">
               <button className="max-w-48 mt-5 bg-blend-overlay bg-fixed bg-black/70 hover:bg-black transition-colors duration-100 ease-in rounded-xl px-8 py-2 text-lg text-white tracking-wide">
-                Learn More
+                Get started
               </button>
             </Link>
           </div>
