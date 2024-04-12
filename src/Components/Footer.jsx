@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-black">
+    <footer className="bg-black">
       <div className="mx-auto w-full max-w-screen-xl py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0 text-emerald-500 ">
@@ -26,10 +26,10 @@ export default function Footer() {
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold uppercase text-white">
                 Resources
               </h2>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+              <ul className="text-gray-400 font-medium">
                 <li className="mb-4">
                   <a href="" className="hover:underline">
                     About Us
@@ -46,10 +46,10 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold uppercase text-white">
                 Follow us
               </h2>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+              <ul className="text-gray-400 font-medium">
                 <li className="mb-4">
                   <a
                     href="https://github.com/evanz0820/Rankify"
@@ -70,9 +70,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <hr className="my-6  sm:mx-auto border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <span className="text-sm  sm:text-center text-gray-400">
             © 2024{" "}
             <a href="/" className="hover:underline">
               Rankify
@@ -81,7 +81,7 @@ export default function Footer() {
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              className="text-gray-500 hover:text-white"
             >
               <svg
                 className="w-4 h-4"
@@ -100,7 +100,7 @@ export default function Footer() {
             </a>
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-500 hover:text-white ms-5"
             >
               <svg
                 className="w-4 h-4"
@@ -115,7 +115,7 @@ export default function Footer() {
             </a>
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-500 hover:text-white ms-5"
             >
               <svg
                 className="w-4 h-4"
@@ -134,7 +134,7 @@ export default function Footer() {
             </a>
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-500 hover:text-white ms-5"
             >
               <svg
                 className="w-4 h-4"
