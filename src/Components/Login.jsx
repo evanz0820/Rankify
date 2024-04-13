@@ -43,7 +43,8 @@ function Login() {
                 // if(res.data == "Success"){
                 if(res.data.Login){
                     // console.log(res)
-                    navigate("/homelogin");
+                    // navigate("/homelogin");
+                    navigate("/");
                 } else{
                     alert("No record Exists")
                 }
