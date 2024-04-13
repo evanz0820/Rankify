@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function handleSubmit(event) {
     event.preventDefault();
 
+    const restaurantName = document.getElementById('restaurantName').value;
     const reviewTitle = document.getElementById('reviewTitle').value;
     const reviewContent = document.getElementById('reviewContent').value;
     const reviewAuthor = document.getElementById('reviewAuthor').value;
