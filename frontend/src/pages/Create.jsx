@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Searchbar from '../Components/Searchbar';
+import {useNavigate} from 'react-router-dom';
 import Navbar from '../Components/Navbar'; // Import Navbar component
 import axios from 'axios';
 
@@ -8,7 +9,25 @@ function Create() {
   const [placeID, setPlaceID] = useState(null);
   const [reviewContent, setReviewContent] = useState('');
   const [rating, setRating] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // State to track user's authentication status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+    useEffect(() => {
+        // Fetch the user's authentication status when the component mounts
+        axios.get('http://localhost:8081/homelogin')
+            .then(res => {
+                if (res.data.valid) {
+                    // If the user is logged in, update the state
+                    setIsLoggedIn(true);
+                } else {
+                    // If not logged in, redirect to the login page
+                    // navigate('/login');
+                    setIsLoggedIn(false);
+                }
+            })
+            .catch(err => console.log(err));
+    }, [navigate]);
+
 
   const handlePlaceIDChange = (newPlaceID) => {
     setPlaceID(newPlaceID);

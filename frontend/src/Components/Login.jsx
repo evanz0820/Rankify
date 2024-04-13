@@ -25,7 +25,8 @@ function Login() {
         axios.get('http://localhost:8081/homelogin')
         .then(res => {
           if(res.data.valid){
-            navigate('/homelogin')
+            navigate('/')
+            // navigate('/homelogin')
           } else{
             navigate('/login')
           }
