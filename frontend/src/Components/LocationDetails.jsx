@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useParams } from "react-router-dom"; // Import useParams
 import CreateComment from "../pages/CreateComment";
-
+import StarRating from "./StarRating";
 
 function LocationDetails() {
     const { placeID} = useParams();
@@ -86,7 +86,7 @@ function LocationDetails() {
                 <h1 className="text-3xl font-bold mb-4">Review Details</h1>
                 <div className="mb-4">
                     <p><span className="font-semibold">Review Content:</span> {content}</p>
-                    <p><span className="font-semibold">Rating:</span> {rating}</p>
+                    <p><span className="font-semibold">Rating:</span> <StarRating rating={rating} /> </p>
                     <p><span className="font-semibold">Author:</span> {author}</p>
                     {/* <p><span className="font-semibold">Time:</span> {time ? time : `Review Date: ${review_date}`}</p> */}
                 </div>
