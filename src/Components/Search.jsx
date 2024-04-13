@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import "./Search.css";
 import Navbar from "./Navbar";
 import { Link, useParams } from "react-router-dom";
+import ReviewList from "./ReviewList";
 
 
 
@@ -34,7 +35,7 @@ function Search() {
         <div className="Search">
             <Navbar />
             {placeDetails && (
-                <div className="my-8 mx-2">
+                <div className="my-8 mx-2 overflow-y-auto">
                     <div className="search-hero left-section">
                         <div className="search-hero-content">
                             {/* <img
@@ -58,18 +59,15 @@ function Search() {
                         </div>
                     </div>
                     <h2 className="text-2xl font-bold mb-4">Google Reviews:</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 right-section">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 right-section">
                         {placeDetails && placeDetails.reviews.map((review, index) => (
                             <div key={index} className="bg-gray-100 rounded-lg p-4">
                                 <Link to={`/location/${placeID}?content=${encodeURIComponent(review.text)}&rating=${review.rating}&author=${encodeURIComponent(review.author_name)}&time=${review.time}`}></Link>
-                        <Link to={`/location/${placeID}?content=${encodeURIComponent(review.text)}&rating=${review.rating}&author=${encodeURIComponent(review.author_name)}&time=${review.time}`}>
-                            <p className="mb-2"><span className="font-semibold">Description: </span>{review.text}</p>
-                            <p className="mb-2"><span className="font-semibold">Rating: </span> {review.rating}</p>
-                            <p><span className="font-semibold">Author: </span> {review.author_name}</p>
-                            
-                        </Link>
-                        </div>
-                    ))}
+                                <Link to={`/location/${placeID}?content=${encodeURIComponent(review.text)}&rating=${review.rating}&author=${encodeURIComponent(review.author_name)}&time=${review.time}`}>
+                                    <ReviewList userInfo={placeDetails} />
+                                </Link>
+                            </div>
+                        ))}
                     </div>
                 
                     <h2 className="text-2xl font-bold mb-4">Database Reviews:</h2>
