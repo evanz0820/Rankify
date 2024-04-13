@@ -76,7 +76,7 @@ export default function Profile() {
       <Navbar isTransparent={true} />
 
       {/* ProfileHero Component Mockup (later in separate component)*/}
-      <div className="profile-hero">
+      <div className="profile-hero"> 
         <div className="profile-hero-content">
           <img
             className="profile-avatar"

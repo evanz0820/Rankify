@@ -35,20 +35,20 @@ function Search() {
             <Navbar />
             {placeDetails && (
                 <div className="my-8 mx-2">
-                    <div className="search-hero">
+                    <div className="search-hero left-section">
                         <div className="search-hero-content">
-                            <img
+                            {/* <img
                                 className="search-avatar"
                                 src={placeDetails.icon}
                                 alt="search avatar"
-                            />
-                            <h1>{placeDetails.name}</h1>
+                            /> */}
+                            <p>{placeDetails.name}</p>
                             <h2 className="text-lg text-black font-semibold underline mb-3">
                                 {placeDetails.formatted_address}
                             </h2>
                             <h2 className="text-lg text-black font-semibold mb-3">
                                 {placeDetails.formatted_phone_number}
-                                <span className="ml-8"> Rating:   </span>
+                                <h2> Rating:   </h2>
                                 {placeDetails.rating}
                             </h2>
                             <p>{placeDetails.description}</p>
@@ -58,7 +58,7 @@ function Search() {
                         </div>
                     </div>
                     <h2 className="text-2xl font-bold mb-4">Google Reviews:</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 right-section">
                         {placeDetails && placeDetails.reviews.map((review, index) => (
                             <div key={index} className="bg-gray-100 rounded-lg p-4">
                                 <Link to={`/location/${placeID}?content=${encodeURIComponent(review.text)}&rating=${review.rating}&author=${encodeURIComponent(review.author_name)}&time=${review.time}`}></Link>
