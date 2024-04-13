@@ -1,45 +1,38 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
 const app = express();
+const port = 3000;
 
+// Middleware to parse JSON requests
+app.use(bodyParser.json());
+
+// MySQL connection
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  database: 'restaurant_reviews'
+  database: 'restaurant_review'
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error('Error connecting to MySQL database:', err);
-    return;
-  }
-  console.log('Connected to MySQL database');
-});
+// Endpoint to handle review submissions
+app.post('/submit-review', (req, res) => {
+  const { restaurantName, reviewTitle, reviewContent, reviewAuthor, reviewRating } = req.body;
 
-app.get('/reviews', (req, res) => {
-  connection.query('SELECT * FROM reviews', (err, results) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      res.status(500).send('Internal Server Error');
-      return;
+  // Insert review into database
+  const sql = `INSERT INTO Reviews (restaurant_name, review_title, review_content, author_name, rating) VALUES (?, ?, ?, ?, ?)`;
+  connection.query(sql, [restaurantName, reviewTitle, reviewContent, reviewAuthor, reviewRating], (error, results) => {
+    if (error) {
+      console.error('Error inserting review:', error);
+      res.status(500).json({ error: 'Error inserting review' });
+    } else {
+      console.log('Review inserted successfully');
+      res.status(200).json({ message: 'Review submitted successfully' });
     }
-    res.json(results);
   });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
-
-process.on('SIGINT', () => {
-  console.log('Closing MySQL connection...');
-  connection.end((err) => {
-    if (err) {
-      console.error('Error closing MySQL connection:', err);
-    }
-    console.log('MySQL connection closed');
-    process.exit(0);
-  });
+// Start server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
