@@ -140,7 +140,6 @@ app.get('/place-details/:placeID', async (req, res) => {
         res.status(500).json({ error: "Error fetching place details" });
     }
 });
-
 // End of google stuff
 
 app.post("/submit-review", (req, res) => {
