@@ -9,7 +9,7 @@ import Signup from "./Components/Signup.jsx"
 import HomeLogin from "./Components/HomeLogin.jsx"
 import Create from "./pages/Create.jsx"
 import LocationDetails from './Components/LocationDetails.jsx'
-
+import ViewEdit from './pages/ViewEdit.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -24,6 +24,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/location/:placeID" element={<LocationDetails />} />
             {/* First CRUD */}
             <Route path="/create" element={<Create />}></Route>
+            <Route path="view" element={<ViewEdit/>}/>
+            
           </Routes>
     </BrowserRouter>
   

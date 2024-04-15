@@ -85,7 +85,7 @@ function Search() {
                     <h2 className="text-2xl font-bold mb-4">Database Reviews:</h2>
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
                         {reviews.map((review, index) => (
-                            <div key={index} className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden">
+                            <div key={index} className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden min-w-[450px]">
                             <Link to={`/location/${placeID}?content=${encodeURIComponent(review.review_content)}&rating=${review.rating}&author=${encodeURIComponent(review.name)}&date=${review.review_date}`}>
                                 <p className="mb-2"><span className="font-semibold">Description: </span>{review.review_content}</p>
                                 <p className="mb-2"><span className="font-semibold">Rating:</span> <StarRating rating={review.rating}/></p>

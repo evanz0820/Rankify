@@ -62,6 +62,9 @@ export default function ProfileDropdown() {
               <p className="block px-4 py-2 hover:bg-emerald-600 hover:text-white" onClick={handleLogout}>
                 Sign out
               </p>
+              <Link to="view"className="block px-4 py-2 hover:bg-emerald-600 hover:text-white">
+                My Reviews
+              </Link>
             </>
           ) : (
             <Link to="/login" className="block px-4 py-2 hover:bg-emerald-600 hover:text-white">

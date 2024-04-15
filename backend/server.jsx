@@ -186,6 +186,29 @@ async function getReviewsFromDatabase(placeID) {
 }
 // End of review stuff
 
+// Grabbing all reviews:
+
+// Add a new route to fetch reviews based on the signed-in user
+app.get("/get-user-reviews", (req, res) => {
+    const userID = req.session.userID; // Get the logged-in user's ID from the session
+
+    // Query the database to fetch reviews based on the user's ID
+    const sql = "SELECT * FROM reviews WHERE id = ?";
+    
+    db.query(sql, [userID], (err, reviews) => {
+        if (err) {
+            console.error("Error fetching user reviews:", err);
+            res.status(500).json({ error: "Failed to fetch user reviews" });
+        } else {
+            res.json({ reviews });
+        }
+    });
+});
+
+
+
+//  Comments stuff below
+
 app.post("/submit-comment", (req, res) => {
     const { placeID, commentContent, reviewTime } = req.body;
     // console.log(reviewTime);
