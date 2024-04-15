@@ -57,7 +57,7 @@ const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password:"",
-    datebase: "rankify"
+    datebase: "signup"
 })
 
 app.get('/homelogin', (req,res) => {

@@ -12,6 +12,11 @@ export default {
     "./src/Components/Signup.jsx",
     "./src/Components/ReviewList.jsx",
     "./src/Components/StarRating.jsx",
+    "./src/Components/LocationDetails.jsx",
+    "./src/Components/CreateComment.jsx",
+    "./src/pages/Create.jsx",
+    "./src/pages/HomeLogin.jsx",
+    
   ],
   theme: {
     extend: {},

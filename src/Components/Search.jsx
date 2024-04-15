@@ -35,7 +35,7 @@ function Search() {
         <div className="Search">
             <Navbar />
             {placeDetails && (
-                <div className="my-8 mx-2 overflow-y-auto">
+                <div className="my-8 overflow-y-auto">
                     <div className="search-hero left-section">
                         <div className="search-hero-content">
                             <gmpx-place-overview place={placeID} size="large"></gmpx-place-overview>
@@ -47,13 +47,7 @@ function Search() {
                     
                     <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-4 right-section">
                         <h2 className="text-2xl font-bold mb-4">Google Reviews:</h2>
-                        {placeDetails && placeDetails.reviews.map((review, index) => (
-                            <Link key={index} to={`/location/${placeID}?content=${encodeURIComponent(review.text)}&rating=${review.rating}&author=${encodeURIComponent(review.author_name)}&time=${review.time}`}>
-                                <div className="bg-gray-100 rounded-lg p-4">
-                                    <ReviewList userInfo={placeDetails} />
-                                </div>
-                            </Link>
-                        ))}
+                            <ReviewList userInfo={placeDetails} />
                         <h2 className="text-2xl font-bold mb-4">Database Reviews:</h2>
                         {reviews.map((review, index) => (
                             <div key={index} className="bg-gray-100 rounded-lg p-4">
