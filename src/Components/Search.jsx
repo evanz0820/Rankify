@@ -66,7 +66,7 @@ function Search() {
                         </div>
                     </div>
             </div>
-            <div className="mt-20 overflow-y-auto w-1/2">   
+            <div className="mt-20 overflow-y-auto w-1/2 mx-auto">   
                 <div className="grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 gap-4 ">
                         {reviews.map((review, id) => (
                             <div className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden min-w-[400px]">
