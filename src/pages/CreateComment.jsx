@@ -33,7 +33,7 @@ function CreateComment({ placeID, reviewTime }) {
                 value={commentContent}
                 onChange={(e) => setCommentContent(e.target.value)}
             />
-            <button onClick={handleSubmitComment}>Submit Comment</button>
+            <button className="border-2 border-black rounded px-4 py-2 my-2 bg-blend-overlay bg-fixed bg-white/70 hover:bg-emerald-500 transition-colors duration-100 ease-in" onClick={handleSubmitComment}>Submit Comment</button>
         </div>
     );
 }

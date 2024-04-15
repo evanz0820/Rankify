@@ -1,9 +1,11 @@
-const dotenv = require("dotenv");
-dotenv.config(); // Load the .env file
 const express = require("express");
 
-const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
-// Check if it's properly loaded
+const dotenv = require("dotenv");
+dotenv.config();
+
+const GoogleApiKey = process.env.GOOGLE_MAPS_API_KEY;
+
+
 // Use async function to dynamically import node-fetch
 (async () => {
     try {
@@ -12,7 +14,7 @@ const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
     } catch (error) {
         console.error("Error importing node-fetch:", error);
     }
-})();   
+})();
 
 
 
@@ -23,6 +25,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 const app = express();
+
 
 app.use(cors({
     // Make sure to use http://localhost:5173 and not  http://localhost:5173/
@@ -45,6 +48,7 @@ app.use(session({
     } // set the session cookie properties
 }))
 
+
 app.get("/get-logged-in-user-id", (req, res) => {
     if (req.session.userID) {
         res.json({ userID: req.session.userID });
@@ -52,12 +56,11 @@ app.get("/get-logged-in-user-id", (req, res) => {
         res.status(404).json({ error: "User ID not found in session" });
     }
 });
-
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password:"",
-    datebase: "signup"
+    database: "signup"
 })
 
 app.get('/homelogin', (req,res) => {
@@ -82,7 +85,7 @@ app.post("/logout", (req, res) => {
 
 app.post("/signup", (req, res) => {
     console.log("Received signup request"); // Add this line
-    const sql = "INSERT INTO Users (`name`, `email`,`password`) VALUES (?)";
+    const sql = "INSERT INTO login (`name`, `email`,`password`) VALUES (?)";
     const values = [
         req.body.name,
         req.body.email,
@@ -98,7 +101,7 @@ app.post("/signup", (req, res) => {
 )
 
 app.post("/login", (req, res) => {
-    const sql = "SELECT * FROM Users WHERE `email` = ? AND `password` = ?";
+    const sql = "SELECT * FROM login WHERE `email` = ? AND `password` = ?";
     db.query(sql,[req.body.email, req.body.password], (err, data) => {
         if(err){
             // return res.json("Error");
@@ -106,6 +109,7 @@ app.post("/login", (req, res) => {
         }
         if(data.length > 0 ){
             req.session.username = data[0].name;
+            req.session.userID = data[0].id;
             // console.log(data)
             // console.log(req.session.username);
             // return res.json("Success");
@@ -118,19 +122,18 @@ app.post("/login", (req, res) => {
 }
 )
 
-
-
 // Maps stuff
 
 app.get('/place-details/:placeID', async (req, res) => {
     const { placeID } = req.params;
     try {
-        const response = await fetch(
-            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=${googleMapsAPIKey}`
+        const placeResponse = await fetch(
+            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=${GoogleApiKey}`
         );
-        if (response.ok) {
-            const data = await response.json();
-            res.json(data.result);
+        if (placeResponse.ok) {
+            const placeData = await placeResponse.json();
+            const reviews = await getReviewsFromDatabase(placeID); // Fetch reviews from the database
+            res.json({ placeDetails: placeData.result, reviews: reviews });
         } else {
             console.error("Failed to fetch place details");
             res.status(500).json({ error: "Failed to fetch place details" });
@@ -140,8 +143,12 @@ app.get('/place-details/:placeID', async (req, res) => {
         res.status(500).json({ error: "Error fetching place details" });
     }
 });
+
 // End of google stuff
 
+// Handle review submission
+
+// Handle review submission
 app.post("/submit-review", (req, res) => {
     const { placeID, reviewContent, rating } = req.body;
     const userID = req.session.userID; // Assuming you store the user's ID in the session
@@ -161,6 +168,8 @@ app.post("/submit-review", (req, res) => {
     });
 });
 
+
+// getting from reviews table
 async function getReviewsFromDatabase(placeID) {
     // Query your database for reviews associated with the given place_id
     const sql = "SELECT r.*, l.name FROM reviews r JOIN login l ON r.id = l.id WHERE r.place_id = ?";

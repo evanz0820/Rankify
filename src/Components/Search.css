@@ -73,7 +73,8 @@
 }
 
 .left-section {
-    position: fixed;
+    margin-top: 80px;
+    position: relative;
     left: 0;
     top: 0;
     width: 40%;
@@ -83,12 +84,10 @@
 }
 
 .right-section {
-    margin-top: 80px;
     position: fixed;
     right: 0;
     top: 0;
-    width: 60%;
-    height: 100%;
+    width: 50%;
     background-color: #f0f0f0; /* Just for demonstration, you can change the color */
     overflow-y: auto;
 }

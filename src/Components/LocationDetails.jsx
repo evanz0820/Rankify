@@ -80,14 +80,13 @@ function LocationDetails() {
     }, [placeID, time, review_date]);
     
     return (
-        <div className="">
+        <div className="flex flex-col py-36 h-screen bg-gradient-to-b from-white to-gray-200">
             <Navbar />
-            <div className="my-8 ml-2">
-                <h1 className="text-3xl font-bold mb-4">Review Details</h1>
+            <div className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden">
                 <div className="mb-4">
-                    <p><span className="font-semibold">Review Content:</span> {content}</p>
-                    <p><span className="font-semibold">Rating:</span> <StarRating rating={rating} /> </p>
-                    <p><span className="font-semibold">Author:</span> {author}</p>
+                    <h2 className="text-xl font-semibold mb-2">{author}</h2>
+                    <h3 className="text-sm"><StarRating rating={rating} /> </h3>
+                    <h3 className="text-sm mb-2">{content}</h3>
                     {/* <p><span className="font-semibold">Time:</span> {time ? time : `Review Date: ${review_date}`}</p> */}
                 </div>
 
