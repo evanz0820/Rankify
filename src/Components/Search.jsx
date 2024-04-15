@@ -56,7 +56,7 @@ function Search() {
     return (
         <div className="flex mt-20">
             <Navbar isTransparent={false}/>
-            <div className="flex w-1/2 overflow-auto">
+            <div className="w-1/3">
                 <div className="">
                         <div className="">
                             <gmpx-place-overview place={placeID} size="x-large"></gmpx-place-overview>
@@ -66,9 +66,8 @@ function Search() {
                         </div>
                     </div>
             </div>
-            <div className="mt-20 overflow-y-auto flex w-1/2">   
-                <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4 ">
-                    <div className="grid lg:grid-cols-1 md:grid-cols-2 grid-cols-1 gap-6">
+            <div className="mt-20 overflow-y-auto w-1/2">   
+                <div className="grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 gap-4 ">
                         {reviews.map((review, id) => (
                             <div className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden min-w-[400px]">
                                 <Link to={`/location/${placeID}?content=${encodeURIComponent(review.review_content)}&rating=${review.rating}&author=${encodeURIComponent(review.name)}&date=${review.review_date}`}>
@@ -84,7 +83,6 @@ function Search() {
                                 </Link>
                             </div>
                         ))}
-                    </div>
                 </div>
             </div>
         </div>
