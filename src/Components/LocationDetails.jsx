@@ -68,7 +68,7 @@ function LocationDetails() {
                     <h2 className="text-2xl font-bold mb-4">Comments</h2>
                     {comments.map((comment, index) => (
                         <div key={index} className="mb-2">
-                            <p>{comment.comment_content}</p>
+                            <p>{comment.user_name}: {comment.comment_content}</p>
                         </div>
                     ))}
                 </div>

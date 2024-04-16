@@ -257,6 +257,68 @@ app.get("/get-comments/:reviewID", async (req, res) => {
     });
 });
 
+// Handle DELETE request to delete a review
+app.delete("/delete-review/:reviewID", (req, res) => {
+    const reviewID = req.params.reviewID;
+
+    // Construct the SQL query to delete the review with the given review ID
+    const sql = "DELETE FROM reviews WHERE review_id = ?";
+    
+    // Execute the query
+    db.query(sql, [reviewID], (err, result) => {
+        if (err) {
+            console.error("Error deleting review:", err);
+            res.status(500).json({ error: "Failed to delete review" });
+        } else {
+            console.log("Review deleted successfully");
+            res.json({ success: true });
+        }
+    });
+});
+
+// Add this route definition before the existing route definitions
+
+// Handle GET request to fetch a review by its ID
+app.get("/get-review/:reviewID", (req, res) => {
+    const reviewID = req.params.reviewID;
+
+    // Construct the SQL query to fetch the review with the given review ID
+    const sql = "SELECT * FROM reviews WHERE review_id = ?";
+    
+    // Execute the query
+    db.query(sql, [reviewID], (err, result) => {
+        if (err) {
+            console.error("Error fetching review:", err);
+            res.status(500).json({ error: "Failed to fetch review" });
+        } else {
+            if (result.length > 0) {
+                res.json({ review: result[0] }); // Assuming the result is an array of reviews, send the first review
+            } else {
+                res.status(404).json({ error: "Review not found" });
+            }
+        }
+    });
+});
+
+// Handle PUT request to edit a review by its ID
+app.put("/edit-review/:reviewID", (req, res) => {
+    const reviewID = req.params.reviewID;
+    const { reviewContent, rating } = req.body;
+
+    // Construct the SQL query to update the review with the given review ID
+    const sql = "UPDATE reviews SET review_content = ?, rating = ? WHERE review_id = ?";
+    
+    // Execute the query
+    db.query(sql, [reviewContent, rating, reviewID], (err, result) => {
+        if (err) {
+            console.error("Error editing review:", err);
+            res.status(500).json({ error: "Failed to edit review" });
+        } else {
+            console.log("Review edited successfully");
+            res.json({ success: true });
+        }
+    });
+});
 
 
 app.listen(8081, ()=> {

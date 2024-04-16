@@ -72,7 +72,7 @@ function Search() {
                             <div className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden min-w-[400px]">
                                 <Link to={`/location/${placeID}?content=${encodeURIComponent(review.review_content)}&rating=${review.rating}&author=${encodeURIComponent(review.name)}&reviewID=${review.review_id}`}>
                                     <p className="text-sm font-light mb-1">{new Date(review.review_date).toLocaleString()}</p>
-                                    <h3 className="text-sm">{review.username}</h3>
+                                    {/* <h3 className="text-sm">{review.username}</h3> */}
                                     <h3 className="text-md font-medium">{review.name}</h3>
                                     <div className="flex items-center">
                                         <StarRating rating={review.rating} />
