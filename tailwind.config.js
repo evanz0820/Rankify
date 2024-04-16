@@ -13,6 +13,7 @@ export default {
     "./src/Components/ReviewList.jsx",
     "./src/Components/StarRating.jsx",
     "./src/Components/Review.jsx",
+    "./src/Components/ReviewRating.jsx",
     "./src/Components/LocationDetail.jsx",
   ],
   theme: {
