@@ -52,7 +52,10 @@ export default function LocationDetail() {
               class="block p-2.5 w-full min-h-[100px] max-h-[150px] text-sm bg-white rounded-lg border border-gray-300"
               placeholder="Write a comment..."
             ></textarea>
-            <button class="border-2 border-black rounded px-4 py-2 my-2 hover:bg-black hover:text-white text-center transition-colors ease-in duration-100">
+            <button className="border-2 border-black rounded px-4 py-2 my-2 hover:bg-black hover:text-white text-center transition-colors ease-in duration-100">
+              Post comment
+            </button>
+            <button className="border-2 border-emerald-500 px-4 py-2 my-2 bg-blend-overlay bg-fixed bg-white/70 hover:bg-emerald-500 hover:text-white transition-colors duration-100 ease-in">
               Post comment
             </button>
           </div>
