@@ -1,22 +1,3 @@
-// import React from 'react'
-// import Navbar from "../Components/Navbar"
-// function ViewEdit() {
-//   return (
-//     <div>
-//         <div className="flex items-center justify-center min-h-screen bg-[url('/src/assets/login-image.jpg')] bg-center bg-cover bg-blend-overlay bg-fixed bg-black/45">
-//             <Navbar isTransparent={true} />
-//             <h1 className="text-white">Your Reviews</h1>
-
-
-//         </div>
-
-//     </div>
-//   )
-// }
-
-// export default ViewEdit;
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from "../Components/Navbar"
@@ -44,7 +25,7 @@ function ViewEdit() {
                     {reviews.map((review, index) => (
                         <div key={index} className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden min-w-[450px]">
                             {/* Display review details here */}
-                            <p>Review Location: {review.place_id}</p>
+                            <p>Review Location: {review.location_name}</p>
                             <p>Review Content: {review.review_content}</p>
                             <p>Rating: {review.rating}</p>
                             <p>Review Posted: {new Date(review.review_date).toLocaleString()}</p>

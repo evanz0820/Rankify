@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { Link, useParams} from "react-router-dom";
 import StarRating from "./StarRating";
+import '@googlemaps/extended-component-library/place_overview.js';
 
 function Search() {
     const { placeID } = useParams();
@@ -52,50 +53,39 @@ function Search() {
 
 
     return (
-        <div className="Search-Container">
-            <Navbar />
-            <h1 className="ml-2 my-8 text-1xl font-bold">Welcome to the Search page</h1>
-            {placeDetails && (
-                <div className="my-8 mx-2">
-                    <h1 className="text-3xl font-bold mb-4">{placeDetails && placeDetails.name}</h1>
-                    <p className="mb-2"><span className="font-semibold">Address:</span> {placeDetails && placeDetails.formatted_address}</p>
-                    <p className="mb-2"><span className="font-semibold">Phone Number:</span> {placeDetails && placeDetails.formatted_phone_number}</p>
-                    <p className="mb-2"><span className="font-semibold">Rating:</span> {placeDetails && placeDetails.rating}</p>
+        <div className="flex mt-20">
+            <Navbar isTransparent={false}/>
+            <div className="w-1/3">
+                <div className="">
+                        <div className="">
+                            <gmpx-place-overview place={placeID } size="x-large"></gmpx-place-overview>
 
-
-                    {/* Start of reviews */}
-                    <h2 className="text-2xl font-bold mb-4">Google Reviews:</h2>
-                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
-                    {placeDetails && placeDetails.reviews.map((review, index) => (
-                        <div key={index} className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden">
-                        <Link to={`/location/${placeID}?content=${encodeURIComponent(review.text)}&rating=${review.rating}&author=${encodeURIComponent(review.author_name)}&time=${review.time}`}>
-                            <p className="mb-2"><span className="font-semibold">Description: </span>{review.text}</p>
-                            
-                            <p className="mb-2">
-                                <span className="font-semibold">Rating: </span> 
-                                <StarRating rating={review.rating} />
-                            </p>
-                            <p><span className="font-semibold">Author: </span> {review.author_name}</p>
-                            
-                        </Link>
+                            <button className="max-w-48 mt-5 bg-blend-overlay bg-fixed bg-black/70 hover:bg-black transition-colors duration-100 ease-in rounded-xl px-8 py-2 text-lg text-white tracking-wide">
+                                Write a Review
+                            </button>
                         </div>
-                    ))}
                     </div>
-                
-                    <h2 className="text-2xl font-bold mb-4">Database Reviews:</h2>
-                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
-                        {reviews.map((review, index) => (
-                            <div key={index} className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden min-w-[450px]">
-                            <Link to={`/location/${placeID}?content=${encodeURIComponent(review.review_content)}&rating=${review.rating}&author=${encodeURIComponent(review.name)}&date=${review.review_date}`}>
-                                <p className="mb-2"><span className="font-semibold">Description: </span>{review.review_content}</p>
-                                <p className="mb-2"><span className="font-semibold">Rating:</span> <StarRating rating={review.rating}/></p>
-                                <p><span className="font-semibold">Author: </span> {review.name}</p>
-                            </Link>
+            </div>
+            <div className="mt-20 overflow-y-auto w-1/2 mx-auto">   
+                <div className="grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 gap-4 ">
+                        {reviews.map((review, id) => (
+                            <div className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden min-w-[400px]">
+                                <Link to={`/location/${placeID}?content=${encodeURIComponent(review.review_content)}&rating=${review.rating}&author=${encodeURIComponent(review.name)}&reviewID=${review.review_id}`}>
+                                    <p className="text-sm font-light mb-1">{new Date(review.review_date).toLocaleString()}</p>
+                                    <h3 className="text-sm">{review.username}</h3>
+                                    <h3 className="text-md font-medium">{review.name}</h3>
+                                    <div className="flex items-center">
+                                        <StarRating rating={review.rating} />
+                                    </div>
+                                    {/* <p>{review.review_id}</p> */}
+                                    <p className=" text-sm font-normal leading-relaxed mb-3">
+                                        {review.review_content}
+                                    </p>
+                                </Link>
                             </div>
                         ))}
-                    </div>
                 </div>
-            )}
+            </div>
         </div>
     );
 }
