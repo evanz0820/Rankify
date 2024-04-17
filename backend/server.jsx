@@ -243,10 +243,25 @@ app.post("/submit-comment", async (req, res) => {
 });
 
 // Handle fetching comments for a specific review
+// app.get("/get-comments/:reviewID", async (req, res) => {
+//     const { reviewID } = req.params;
+//     // Query the database to fetch comments based on the reviewID
+//     const sql = "SELECT * FROM comments WHERE review_id = ?";
+//     db.query(sql, [reviewID], (err, comments) => {
+//         if (err) {
+//             console.error("Error fetching comments:", err);
+//             res.status(500).json({ error: "Failed to fetch comments" });
+//         } else {
+//             res.json({ comments });
+//         }
+//     });
+// });
+
+// Handle fetching comments for a specific review
 app.get("/get-comments/:reviewID", async (req, res) => {
     const { reviewID } = req.params;
     // Query the database to fetch comments based on the reviewID
-    const sql = "SELECT * FROM comments WHERE review_id = ?";
+    const sql = "SELECT c.*, l.name AS author FROM comments c JOIN login l ON c.id = l.id WHERE c.review_id = ?";
     db.query(sql, [reviewID], (err, comments) => {
         if (err) {
             console.error("Error fetching comments:", err);
