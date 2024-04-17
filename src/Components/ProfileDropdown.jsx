@@ -56,9 +56,9 @@ export default function ProfileDropdown() {
         <div className="absolute right-0 mt-2 w-36 py-2 bg-white text-gray-800 rounded-xl font-normal shadow-xl">
           {isLoggedIn ? (
             <>
-              <p className="block px-4 py-2 hover:bg-emerald-600 hover:text-white">
+              <Link to="/" className="block px-4 py-2 hover:bg-emerald-600 hover:text-white">
                 {userName}
-              </p>
+              </Link>
 
               <Link to="view" className="block px-4 py-2 hover:bg-emerald-600 hover:text-white">
                 My Reviews

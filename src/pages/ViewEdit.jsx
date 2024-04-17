@@ -36,7 +36,7 @@ function ViewEdit() {
         <div>
             <Navbar />
             <div className='my-24'>
-                <h1 className="text-2xl font-bold mb-4">Your Reviews</h1>
+                <h1 className="text-2xl font-bold mb-4 ml-4">Your Reviews</h1>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
                     {reviews.map((review, index) => (
                         <div key={index} className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden min-w-[450px]">
