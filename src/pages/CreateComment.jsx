@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function CreateComment({ placeID, reviewTime }) {
+function CreateComment({ placeID, reviewID }) {
     const [commentContent, setCommentContent] = useState('');
 
     const handleSubmitComment = async () => {
@@ -9,12 +10,8 @@ function CreateComment({ placeID, reviewTime }) {
             const requestData = {
                 placeID,
                 commentContent,
+                reviewID, // Include reviewID in the request data
             };
-    
-            // Include reviewTime only if it's defined
-            if (reviewTime) {
-                requestData.reviewTime = reviewTime;
-            }
     
             await axios.post('http://localhost:8081/submit-comment', requestData);
             // Reset comment content after submission if needed

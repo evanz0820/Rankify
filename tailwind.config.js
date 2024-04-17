@@ -16,6 +16,8 @@ export default {
     "./src/Components/CreateComment.jsx",
     "./src/pages/Create.jsx",
     "./src/pages/HomeLogin.jsx",
+    "./src/pages/EditReview.jsx",
+    "./src/pages/ViewEdit.jsx",
     
   ],
   theme: {

@@ -46,6 +46,11 @@ function Create() {
       setPlaceID(null);
       setReviewContent('');
       setRating('');
+      
+      navigate('/'); // Replace '/success' with the desired route
+      
+    
+
     } catch (error) {
       console.error('Error submitting review:', error);
     }
@@ -100,13 +105,20 @@ function Create() {
                 Submit Review
               </button>
             </div>
+            <div class="relative">
+              <img
+                src="src/assets/write-review-image.jpg"
+                alt="img"
+                class="md:w-[450px] h-full hidden rounded-r-2xl md:block object-cover"
+              />
+            </div>
           </div>
         ) : ( // If user is not logged in, show sign-in message
           <div className="">
             <p className="text-xls text-center font-bold text-white">Please sign in to write a review.</p>
           </div>
         )}
-
+        
       </form>
       
     </div>
