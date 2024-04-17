@@ -71,3 +71,23 @@
     box-shadow: 1px 1px 5px 1px rgb(0, 0, 0, .5);
     z-index: 1;
 }
+
+.left-section {
+    margin-top: 80px;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    background-color: white; /* Just for demonstration, you can change the color */
+    overflow: auto;
+}
+
+.right-section {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 50%;
+    background-color: #f0f0f0; /* Just for demonstration, you can change the color */
+    overflow-y: auto;
+}

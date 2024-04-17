@@ -1,8 +1,37 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function ProfileDropdown() {
   const [openProfile, setOpenProfile] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState('');
+  const navigate = useNavigate(); // useNavigate replaces useHistory in React Router v6
+
+  useEffect(() => {
+    axios.get('http://localhost:8081/homelogin')
+      .then(res => {
+        setIsLoggedIn(res.data.valid);
+        if (res.data.valid) {
+          setUserName(res.data.username);
+        }
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  const handleLogout = () => {
+    axios.post('http://localhost:8081/logout')
+      .then(res => {
+        if (res.data.success) {
+          setIsLoggedIn(false);
+          navigate('/');
+        } else {
+          console.log("Logout failed");
+        }
+      })
+      .catch(err => console.log(err));
+  };
 
   return (
     <div className="relative">
@@ -25,18 +54,26 @@ export default function ProfileDropdown() {
       </button>
       {openProfile && (
         <div className="absolute right-0 mt-2 w-36 py-2 bg-white text-gray-800 rounded-xl font-normal shadow-xl">
-          <Link
-            to="/profile"
-            className="block px-4 py-2 hover:bg-emerald-600 hover:text-white"
-          >
-            Profile
-          </Link>
-          <Link
-            to="/"
-            className="block px-4 py-2 hover:bg-emerald-600 hover:text-white"
-          >
-            Sign out
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <Link to="/" className="block px-4 py-2 hover:bg-emerald-600 hover:text-white">
+                {userName}
+              </Link>
+
+              <Link to="view" className="block px-4 py-2 hover:bg-emerald-600 hover:text-white">
+                My Reviews
+              </Link>
+              
+              <p className="block px-4 py-2 hover:bg-emerald-600 hover:text-white" onClick={handleLogout}>
+                Sign out
+              </p>
+              
+            </>
+          ) : (
+            <Link to="/login" className="block px-4 py-2 hover:bg-emerald-600 hover:text-white">
+              Log in
+            </Link>
+          )}
         </div>
       )}
     </div>

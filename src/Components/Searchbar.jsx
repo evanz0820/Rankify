@@ -15,10 +15,9 @@ function Searchbar({ placeholder, onPlaceIDChange }) {
     }, [onPlaceIDChange]);
 
     return (
-        <div className='search-bar w-1/2'>
+        <div className='search-bar w-full'>
             <div className="searchInputs ">
-                <input className="w-full h-10 text-black" ref={inputRef} type="text" placeholder={placeholder} />
-                {/* <div className="searchIcon"></div> */}
+                <input className="w-full px-4 py-2 focus:outline-none text-black" ref={inputRef} type="text" placeholder={placeholder} />
             </div>
             <div className="dataResult"></div>
         </div>
@@ -26,4 +25,6 @@ function Searchbar({ placeholder, onPlaceIDChange }) {
 }
 
 export default Searchbar;
+
+// Path: photos/0/getUrl/Scopes/0/f
 

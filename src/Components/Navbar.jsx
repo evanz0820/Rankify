@@ -1,17 +1,28 @@
-import React, { useState , useEffect} from "react";
-import "./Navbar.css";
-import { Link } from "react-router-dom";
-import Searchbar from "./Searchbar"; // Import the Searchbar component
-import ProfileDropdown from "./ProfileDropdown";
+import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import Searchbar from './Searchbar'; // Import the Searchbar component
 import axios from "axios";
+import ProfileDropdown from "./ProfileDropdown";
 
-function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
+
+function Navbar({ isTransparent = false },{ onPlaceIDChange }) { // Pass onPlaceIDChange as prop
+
   const [navBackground, setNavBackground] = useState(false);
   const [placeID, setPlaceID] = useState(null);
 
   const handlePlaceIDChange = (newPlaceID) => {
     setPlaceID(newPlaceID);
+  }
+
+  const changeBackground = () => {
+    if (window.scrollY >= 700) {
+      setNavBackground(true);
+    } else {
+      setNavBackground(false);
+    }
   };
+
+  window.addEventListener("scroll", changeBackground);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -35,24 +46,15 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
       .catch(err => console.log(err));
   };
 
-  const changeBackground = () => {
-    if (window.scrollY >= 700) {
-      setNavBackground(true);
-    } else {
-      setNavBackground(false);
-    }
-  };
-
-  window.addEventListener("scroll", changeBackground);
 
   return (
     <nav
       className={`flex container-full items-center fixed justify-around top-0 h-20 w-full z-10 ${
         navBackground && isTransparent
-          ? "bg-white border-b-2 border-opacity-25 border-b-gray-400 transition ease-in duration-200"
-          : "bg-transparent transition ease-out duration-200"
+          ? "bg-white border-b-2 border-opacity-25 border-b-gray-400 transition ease-in duration-100"
+          : "bg-transparent transition ease-out duration-100"
       }
-      ${isTransparent === false && "bg-white"}`}
+      ${isTransparent === false && "bg-white border-b-2 border-opacity-25 border-b-gray-400"}`}
     >
       {/* Logo */}
       <Link to="/">
@@ -78,51 +80,44 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
       <div className="flex min-w-[150px] w-1/3 p-2 bg-white rounded-full shadow-md border-2 absolute">
         <div className="flex grow items-center rounded-full">
           <Searchbar onPlaceIDChange={handlePlaceIDChange} />
-          {/* <input
-            className="w-full px-4 py-2 focus:outline-none text-black"
-            type="text"
-            placeholder="Search..."
-            // value={searchTerm}
-            // onChange={handleInputChange}
-          /> */}
-          {/* <img src={searchIcon} alt='Search' className='search-icon' /> */}
           <Link to={`/search/${placeID}`}>
             <button className="flex-shrink-0 px-2 py-2 bg-emerald-500 text-white font-semibold rounded-full hover:bg-emerald-400 transition-colors duration-300 ease-in focus:outline-none">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                />
-              </svg>
-            </button>
-          </Link>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                  />
+                </svg>
+              </button>
+            </Link>
+          </div>
         </div>
-      </div>
+
 
       <div className="flex items-center justify-center font-semibold mr-1">
         {/* placeholder nav items; change later */}
         {isTransparent ? (
           <Link
-            to="/AboutUs"
+            to="/Create"
             className={`rounded-full px-4 py-2 text-md hidden md:inline truncate ${
               navBackground
-                ? "text-black transition ease-in duration-200"
-                : "text-white transition ease-out duration-200"
+                ? "text-black transition ease-in duration-100"
+                : "text-white transition ease-out duration-100"
             }`}
           >
             Write a Review
           </Link>
         ) : (
           <Link
-            to="/AboutUs"
+            to="/Create"
             className={`rounded-full px-4 py-2 text-md hidden md:inline truncate text-black`}
           >
             Write a Review
@@ -144,33 +139,8 @@ function Navbar({ isTransparent = false }, { onPlaceIDChange }) {
             />
           </svg>
         </button>
-
-        {/* TODO: Login will turn into profile icon when logged in, will route to their profile page
-        <Link
-          to="/login"
-          className="bg-black hover:bg-neutral-800 transition-colors duration-100 ease-in rounded-full px-5 py-2 text-lg text-white tracking-wide"
-        >
-          Login
-        </Link> */}
         <ProfileDropdown />
       </div>
-
-      {/* 4/4/2024 RYAN'S NOTE: Commented this out cuz it overlapped with my static navbar navbar */}
-      {/*<div className="bg-red-400 p-4 flex justify-between items-center">
-      <h1 className="text-black text-2xl">Rankify</h1>
-      <div className='flex w-3/5 '>
-        <Searchbar onPlaceIDChange={handlePlaceIDChange} />
-
-        {/* Centering the button 
-        <Link className="border-2 border-black rounded w-1/5 flex justify-center items-center" to={`/search/${placeID}`}>
-          <button className="">Search!</button>
-        </Link> 
-      </div>
-      <div className="flex justify-center"> {/* Center align the content 
-        <Link to="/" className="text-black mr-4">Home</Link>
-        <Link to="/about" className="text-black mr-4">About</Link>
-      </div>
-    </div>*/}
     </nav>
   );
 }

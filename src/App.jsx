@@ -11,6 +11,8 @@ import ReviewList from "./Components/ReviewList";
 
 function App() {
   const [placeID, setPlaceID] = useState(null);
+  const [reviews, setReviews] = useState([]);
+  const firstFiveReviews = reviews.slice(0, 5);
 
   useEffect(() => {}, []); // Empty dependency array to run once on mount
 
@@ -127,7 +129,21 @@ function App() {
         </div>
         <div className="container-full">
           <div className="container mx-auto py-8 px-8">
-            <ReviewList userInfo={userInfo} />
+            <div className="grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 gap-4 ">
+                {firstFiveReviews.map((review, id) => (
+                    <div className="max-w-md p-6 mx-auto border-2 border-gray-200 bg-white hover:border-emerald-500 transition duration-300 ease-in shadow-md rounded-lg overflow-hidden min-w-[400px]">
+                      <p className="text-sm font-light mb-1">{new Date(review.review_date).toLocaleString()}</p>
+                      <h3 className="text-sm">{review.username}</h3>
+                      <h3 className="text-md font-medium">{review.name}</h3>
+                      <div className="flex items-center">
+                          <StarRating rating={review.rating} />
+                      </div>
+                      <p className=" text-sm font-normal leading-relaxed mb-3">
+                          {review.review_content}
+                      </p>
+                    </div>
+                ))}
+            </div>
           </div>
         </div>
       </div>

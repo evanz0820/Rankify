@@ -1,9 +1,11 @@
-const dotenv = require("dotenv");
-dotenv.config(); // Load the .env file
 const express = require("express");
 
-const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
-// Check if it's properly loaded
+const dotenv = require("dotenv");
+dotenv.config();
+
+const GoogleApiKey = process.env.GOOGLE_MAPS_API_KEY;
+
+
 // Use async function to dynamically import node-fetch
 (async () => {
     try {
@@ -12,7 +14,7 @@ const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
     } catch (error) {
         console.error("Error importing node-fetch:", error);
     }
-})();   
+})();
 
 
 
@@ -23,6 +25,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 const app = express();
+
 
 app.use(cors({
     // Make sure to use http://localhost:5173 and not  http://localhost:5173/
@@ -45,6 +48,7 @@ app.use(session({
     } // set the session cookie properties
 }))
 
+
 app.get("/get-logged-in-user-id", (req, res) => {
     if (req.session.userID) {
         res.json({ userID: req.session.userID });
@@ -52,12 +56,11 @@ app.get("/get-logged-in-user-id", (req, res) => {
         res.status(404).json({ error: "User ID not found in session" });
     }
 });
-
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password:"",
-    datebase: "rankify"
+    database: "signup"
 })
 
 app.get('/homelogin', (req,res) => {
@@ -82,7 +85,7 @@ app.post("/logout", (req, res) => {
 
 app.post("/signup", (req, res) => {
     console.log("Received signup request"); // Add this line
-    const sql = "INSERT INTO Users (`name`, `email`,`password`) VALUES (?)";
+    const sql = "INSERT INTO login (`name`, `email`,`password`) VALUES (?)";
     const values = [
         req.body.name,
         req.body.email,
@@ -98,7 +101,7 @@ app.post("/signup", (req, res) => {
 )
 
 app.post("/login", (req, res) => {
-    const sql = "SELECT * FROM Users WHERE `email` = ? AND `password` = ?";
+    const sql = "SELECT * FROM login WHERE `email` = ? AND `password` = ?";
     db.query(sql,[req.body.email, req.body.password], (err, data) => {
         if(err){
             // return res.json("Error");
@@ -106,6 +109,7 @@ app.post("/login", (req, res) => {
         }
         if(data.length > 0 ){
             req.session.username = data[0].name;
+            req.session.userID = data[0].id;
             // console.log(data)
             // console.log(req.session.username);
             // return res.json("Success");
@@ -118,19 +122,17 @@ app.post("/login", (req, res) => {
 }
 )
 
-
-
 // Maps stuff
-
 app.get('/place-details/:placeID', async (req, res) => {
     const { placeID } = req.params;
     try {
-        const response = await fetch(
-            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=${googleMapsAPIKey}`
+        const placeResponse = await fetch(
+            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=${GoogleApiKey}`
         );
-        if (response.ok) {
-            const data = await response.json();
-            res.json(data.result);
+        if (placeResponse.ok) {
+            const placeData = await placeResponse.json();
+            const reviews = await getReviewsFromDatabase(placeID); // Fetch reviews from the database
+            res.json({ placeDetails: placeData.result, reviews: reviews });
         } else {
             console.error("Failed to fetch place details");
             res.status(500).json({ error: "Failed to fetch place details" });
@@ -141,27 +143,46 @@ app.get('/place-details/:placeID', async (req, res) => {
     }
 });
 
-// End of google stuff
 
-app.post("/submit-review", (req, res) => {
+// Handle review submission
+app.post("/submit-review", async (req, res) => {
     const { placeID, reviewContent, rating } = req.body;
     const userID = req.session.userID; // Assuming you store the user's ID in the session
 
-    // Insert the review into the database
-    const sql = "INSERT INTO reviews (place_id, review_content, rating, review_date, id) VALUES (?, ?, ?, NOW(), ?)";
-    const values = [placeID, reviewContent, rating, userID];
-    
-    db.query(sql, values, (err, result) => {
-        if (err) {
-            console.error("Error submitting review:", err);
-            res.status(500).json({ error: "Failed to submit review" });
-        } else {
-            console.log("Review submitted successfully");
-            res.json({ success: true });
+    try {
+        // Fetch the location name from the Google Places API using the provided placeID
+        const placeDetailsResponse = await fetch(
+            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&key=${GoogleApiKey}`
+        );
+        
+        if (!placeDetailsResponse.ok) {
+            throw new Error("Failed to fetch place details");
         }
-    });
+        
+        const placeDetails = await placeDetailsResponse.json();
+        const locationName = placeDetails.result.name;
+
+        // Insert the review into the database
+        const sql = "INSERT INTO reviews (place_id, review_content, rating, review_date, id, location_name) VALUES (?, ?, ?, NOW(), ?, ?)";
+        const values = [placeID, reviewContent, rating, userID, locationName];
+        
+        db.query(sql, values, (err, result) => {
+            if (err) {
+                console.error("Error submitting review:", err);
+                res.status(500).json({ error: "Failed to submit review" });
+            } else {
+                console.log("Review submitted successfully");
+                res.json({ success: true });
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching place details:", error);
+        res.status(500).json({ error: "Failed to fetch place details" });
+    }
 });
 
+
+// getting from reviews table
 async function getReviewsFromDatabase(placeID) {
     // Query your database for reviews associated with the given place_id
     const sql = "SELECT r.*, l.name FROM reviews r JOIN login l ON r.id = l.id WHERE r.place_id = ?";
@@ -176,96 +197,144 @@ async function getReviewsFromDatabase(placeID) {
         });
     });
 }
-// End of review stuff
 
-app.post("/submit-comment", (req, res) => {
-    const { placeID, commentContent, reviewTime } = req.body;
-    // console.log(reviewTime);
+
+
+// Grabbing all reviews for signedin user:
+app.get("/get-user-reviews", (req, res) => {
+    const userID = req.session.userID; // Get the logged-in user's ID from the session
+
+    // Query the database to fetch reviews based on the user's ID
+    const sql = "SELECT * FROM reviews WHERE id = ?";
+    
+    db.query(sql, [userID], (err, reviews) => {
+        if (err) {
+            console.error("Error fetching user reviews:", err);
+            res.status(500).json({ error: "Failed to fetch user reviews" });
+        } else {
+            res.json({ reviews });
+        }
+    });
+});
+
+// Handle comment submission
+app.post("/submit-comment", async (req, res) => {
+    const { placeID, commentContent, reviewID } = req.body;
     const userID = req.session.userID;
 
-    // Check if reviewTime is provided and convert it to a valid datetime format
-    let formattedTime = null;
-    if (reviewTime){
-        // Check if reviewTime is in ISO format
-        if (reviewTime.includes('T')) {
-            // Extract the date part from the ISO string
-            const datePart = reviewTime.split('T')[0];
-            // Combine with the time part if available, or set it to '00:00:00' by default
-            formattedTime = datePart + (reviewTime.split('T')[1] ? ' ' + reviewTime.split('T')[1].split('.')[0] : ' 00:00:00');
-        } else {
-            // Convert UNIX timestamp to milliseconds
-            const timestamp = parseInt(reviewTime) * 1000;
-            // Create a new Date object using the timestamp
-            const date = new Date(timestamp);
-            // Format the date as a datetime string
-            formattedTime = date.toISOString().slice(0, 19).replace('T', ' ');
-        }
+    try {
+        // Insert the comment into the database
+        const sql = "INSERT INTO comments (place_id, comment_content, comment_date, review_id, id) VALUES (?, ?, NOW(), ?, ?)";
+        const values = [placeID, commentContent, reviewID, userID];
+        
+        db.query(sql, values, (err, result) => {
+            if (err) {
+                console.error("Error submitting comment:", err);
+                res.status(500).json({ error: "Failed to submit comment" });
+            } else {
+                console.log("Comment submitted successfully");
+                res.json({ success: true });
+            }
+        });
+    } catch (error) {
+        console.error("Error submitting comment:", error);
+        res.status(500).json({ error: "Failed to submit comment" });
     }
-    // console.log(formattedTime);
-    // Insert the comment along with the review_time into the database
-    const sql = "INSERT INTO comments (place_id, comment_content, comment_date, id, review_time) VALUES (?, ?, NOW(), ?, ?)";
-    const values = [placeID, commentContent, userID, formattedTime];
+});
 
-    db.query(sql, values, (err, result) => {
+// Handle fetching comments for a specific review
+// app.get("/get-comments/:reviewID", async (req, res) => {
+//     const { reviewID } = req.params;
+//     // Query the database to fetch comments based on the reviewID
+//     const sql = "SELECT * FROM comments WHERE review_id = ?";
+//     db.query(sql, [reviewID], (err, comments) => {
+//         if (err) {
+//             console.error("Error fetching comments:", err);
+//             res.status(500).json({ error: "Failed to fetch comments" });
+//         } else {
+//             res.json({ comments });
+//         }
+//     });
+// });
+
+// Handle fetching comments for a specific review
+app.get("/get-comments/:reviewID", async (req, res) => {
+    const { reviewID } = req.params;
+    // Query the database to fetch comments based on the reviewID
+    const sql = "SELECT c.*, l.name AS author FROM comments c JOIN login l ON c.id = l.id WHERE c.review_id = ?";
+    db.query(sql, [reviewID], (err, comments) => {
         if (err) {
-            console.error("Error submitting comment:", err);
-            res.status(500).json({ error: "Failed to submit comment" });
+            console.error("Error fetching comments:", err);
+            res.status(500).json({ error: "Failed to fetch comments" });
         } else {
-            console.log("Comment submitted successfully");
+            res.json({ comments });
+        }
+    });
+});
+
+// Handle DELETE request to delete a review
+app.delete("/delete-review/:reviewID", (req, res) => {
+    const reviewID = req.params.reviewID;
+
+    // Construct the SQL query to delete the review with the given review ID
+    const sql = "DELETE FROM reviews WHERE review_id = ?";
+    
+    // Execute the query
+    db.query(sql, [reviewID], (err, result) => {
+        if (err) {
+            console.error("Error deleting review:", err);
+            res.status(500).json({ error: "Failed to delete review" });
+        } else {
+            console.log("Review deleted successfully");
             res.json({ success: true });
         }
     });
 });
 
+// Add this route definition before the existing route definitions
 
-app.get('/get-comments/:placeID/:reviewTime', async (req, res) => {
-    const { placeID, reviewTime } = req.params;
-    try {
-        // console.log("Fetching comments for placeID:", placeID, "and reviewTime:", reviewTime); 
-        const comments = await getCommentsFromDatabase(placeID, reviewTime);
-        
-        res.json({ comments });
-    } catch (error) {
-        console.error("Error fetching comments:", error);
-        res.status(500).json({ error: "Error fetching comments" });
-    }
+// Handle GET request to fetch a review by its ID
+app.get("/get-review/:reviewID", (req, res) => {
+    const reviewID = req.params.reviewID;
+
+    // Construct the SQL query to fetch the review with the given review ID
+    const sql = "SELECT * FROM reviews WHERE review_id = ?";
+    
+    // Execute the query
+    db.query(sql, [reviewID], (err, result) => {
+        if (err) {
+            console.error("Error fetching review:", err);
+            res.status(500).json({ error: "Failed to fetch review" });
+        } else {
+            if (result.length > 0) {
+                res.json({ review: result[0] }); // Assuming the result is an array of reviews, send the first review
+            } else {
+                res.status(404).json({ error: "Review not found" });
+            }
+        }
+    });
 });
 
+// Handle PUT request to edit a review by its ID
+app.put("/edit-review/:reviewID", (req, res) => {
+    const reviewID = req.params.reviewID;
+    const { reviewContent, rating } = req.body;
 
-
-async function getCommentsFromDatabase(placeID, reviewTime) {
-    // Convert Unix timestamp to datetime format
-    let formattedTime = reviewTime;
-
-     // Check if the provided reviewTime is in UNIX timestamp format
-     if (!isNaN(reviewTime)) {
-        // Convert Unix timestamp to datetime format
-        formattedTime = new Date(reviewTime * 1000).toISOString().slice(0, 19).replace('T', ' ');
-        // reviewTime = formattedTime;
-    }
-    // const reviewDateTime = new Date(reviewTime * 1000).toISOString().slice(0, 19).replace('T', ' ');
-    // console.log(formattedTime);
-    // const sql = "SELECT * FROM comments WHERE place_id = ? AND review_time = ?";
-    const sql = `
-    SELECT c.*, l.name AS user_name
-    FROM comments c
-    INNER JOIN login l ON c.id = l.id
-    WHERE c.place_id = ? AND c.review_time = ?
-    `;
-
-
-    return new Promise((resolve, reject) => {
-        db.query(sql, [placeID, formattedTime], (err, comments) => {
-            if (err) {
-                console.error("Error fetching comments:", err);
-                reject(err);
-            } else {
-                // console.log("Fetched comments:", comments);
-                resolve(comments);
-            }
-        });
+    // Construct the SQL query to update the review with the given review ID
+    const sql = "UPDATE reviews SET review_content = ?, rating = ? WHERE review_id = ?";
+    
+    // Execute the query
+    db.query(sql, [reviewContent, rating, reviewID], (err, result) => {
+        if (err) {
+            console.error("Error editing review:", err);
+            res.status(500).json({ error: "Failed to edit review" });
+        } else {
+            console.log("Review edited successfully");
+            res.json({ success: true });
+        }
     });
-}
+});
+
 
 app.listen(8081, ()=> {
     console.log("listening");

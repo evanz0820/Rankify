@@ -17,7 +17,7 @@ export default function Profile() {
       {
         id: 1,
         user: "McDonaldsFan123",
-        date: "October 20, 2023",
+        date: "October 21, 2023",
         title: "Always My Go-To Spot for a Quick Bite!",
         description:
           "I've been a loyal fan of McDonald's for years, and it never disappoints! Whenever I'm in need of a quick and tasty meal, McDonald's is my go-to spot. Their classic Big Mac never fails to satisfy my hunger cravings, and the fries are always crispy and delicious. I also love the convenience of their drive-thru service, which makes grabbing a meal on the go super easy. The staff are always friendly and efficient, ensuring that I have a pleasant dining experience every time. Overall, McDonald's has consistently provided me with great-tasting food and excellent service, making it my favorite fast-food restaurant!",
@@ -76,7 +76,7 @@ export default function Profile() {
       <Navbar isTransparent={true} />
 
       {/* ProfileHero Component Mockup (later in separate component)*/}
-      <div className="profile-hero">
+      <div className="profile-hero"> 
         <div className="profile-hero-content">
           <img
             className="profile-avatar"

@@ -26,7 +26,7 @@ function Validation(values) {
         error.password = "Password should not be empty"
     } 
     else if (!password_pattern.test(values.password)){
-        error.password = "Password doesn't meet the required pattern"
+        error.password = "Password Didn't match"
     } else{
         error.password = ""
     }
